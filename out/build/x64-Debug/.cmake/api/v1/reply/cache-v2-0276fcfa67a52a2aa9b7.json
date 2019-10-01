@@ -867,7 +867,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe"
+			"value" : "C:/PROGRA~2/MICROS~1/2019/COMMUN~1/Common7/IDE/COMMON~1/MICROS~1/CMake/Ninja/ninja.exe"
 		},
 		{
 			"name" : "CMAKE_MODULE_LINKER_FLAGS",
@@ -975,7 +975,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "5"
+			"value" : "3"
 		},
 		{
 			"name" : "CMAKE_PLATFORM_INFO_INITIALIZED",
@@ -1366,6 +1366,18 @@
 			"value" : "[opengl32][c ][v()]"
 		},
 		{
+			"name" : "FIND_PACKAGE_MESSAGE_DETAILS_OpenVR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Details about finding OpenVR"
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "[C:/Users/Boris/source/repos/VoxVR/openvr-1.7.15/headers][C:/Users/Boris/source/repos/VoxVR/openvr-1.7.15/lib/win64/openvr_api.lib][v()]"
+		},
+		{
 			"name" : "FIND_PACKAGE_MESSAGE_DETAILS_Threads",
 			"properties" : 
 			[
@@ -1662,6 +1674,74 @@
 			"value" : ""
 		},
 		{
+			"name" : "OPENVR_HEADERS_ROOT_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Directory to search for private OpenVR headers"
+				}
+			],
+			"type" : "PATH",
+			"value" : ""
+		},
+		{
+			"name" : "OPENVR_INCLUDE_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "ADVANCED",
+					"value" : "1"
+				},
+				{
+					"name" : "HELPSTRING",
+					"value" : "Path to a file."
+				}
+			],
+			"type" : "PATH",
+			"value" : "C:/Users/Boris/source/repos/VoxVR/openvr-1.7.15/headers"
+		},
+		{
+			"name" : "OPENVR_LIBRARY",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Where the openvr Library can be found"
+				}
+			],
+			"type" : "STRING",
+			"value" : "C:/Users/Boris/source/repos/VoxVR/openvr-1.7.15/lib/win64/openvr_api.lib"
+		},
+		{
+			"name" : "OPENVR_LIBRARY_TEMP",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "C:/Users/Boris/source/repos/VoxVR/openvr-1.7.15/lib/win64/openvr_api.lib"
+		},
+		{
+			"name" : "OPENVR_ROOT_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "ADVANCED",
+					"value" : "1"
+				},
+				{
+					"name" : "HELPSTRING",
+					"value" : "Directory to search for OpenVR SDK"
+				}
+			],
+			"type" : "PATH",
+			"value" : "C:/Users/Boris/source/repos/VoxVR/openvr-1.7.15"
+		},
+		{
 			"name" : "OpenVRSDK_BINARY_DIR",
 			"properties" : 
 			[
@@ -1684,6 +1764,18 @@
 			],
 			"type" : "STATIC",
 			"value" : "C:/Users/Boris/source/repos/VoxVR/openvr-1.7.15"
+		},
+		{
+			"name" : "OpenVR_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "The directory containing a CMake configuration file for OpenVR."
+				}
+			],
+			"type" : "PATH",
+			"value" : "OpenVR_DIR-NOTFOUND"
 		},
 		{
 			"name" : "USE_CUSTOM_LIBCXX",
@@ -1758,6 +1850,18 @@
 			"value" : "C:/Users/Boris/source/repos/VoxVR/out/install/x64-Debug"
 		},
 		{
+			"name" : "openvr_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "The directory containing a CMake configuration file for openvr."
+				}
+			],
+			"type" : "PATH",
+			"value" : "openvr_DIR-NOTFOUND"
+		},
+		{
 			"name" : "openvr_api_BINARY_DIR",
 			"properties" : 
 			[
@@ -1768,6 +1872,18 @@
 			],
 			"type" : "STATIC",
 			"value" : "C:/Users/Boris/source/repos/VoxVR/out/build/x64-Debug/openvr-1.7.15/src"
+		},
+		{
+			"name" : "openvr_api_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "The directory containing a CMake configuration file for openvr_api."
+				}
+			],
+			"type" : "PATH",
+			"value" : "openvr_api_DIR-NOTFOUND"
 		},
 		{
 			"name" : "openvr_api_SOURCE_DIR",

@@ -68,12 +68,12 @@ build CMakeFiles\VoxVR.dir\src\Application.cpp.obj: CXX_COMPILER__VoxVR ..\..\..
 #############################################
 # Link the executable VoxVR.exe
 
-build VoxVR.exe: CXX_EXECUTABLE_LINKER__VoxVR CMakeFiles\VoxVR.dir\src\main.cpp.obj CMakeFiles\VoxVR.dir\src\Application.cpp.obj | glfw-3.3\src\glfw3.lib || glfw-3.3\src\glfw3.lib
+build VoxVR.exe: CXX_EXECUTABLE_LINKER__VoxVR CMakeFiles\VoxVR.dir\src\main.cpp.obj CMakeFiles\VoxVR.dir\src\Application.cpp.obj | glfw-3.3\src\glfw3.lib ..\..\..\openvr-1.7.15\lib\win64\openvr_api.lib || glfw-3.3\src\glfw3.lib
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
   LINK_FLAGS = /machine:x64 /debug /INCREMENTAL /subsystem:console
-  LINK_LIBRARIES = glfw-3.3\src\glfw3.lib opengl32.lib glu32.lib kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib
+  LINK_LIBRARIES = glfw-3.3\src\glfw3.lib opengl32.lib glu32.lib ..\..\..\openvr-1.7.15\lib\win64\openvr_api.lib kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib
   OBJECT_DIR = CMakeFiles\VoxVR.dir
-  POST_BUILD = cd .
+  POST_BUILD = cmd.exe /C "cd /D C:\Users\Boris\source\repos\VoxVR\out\build\x64-Debug && "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E copy_directory C:/Users/Boris/source/repos/VoxVR/openvr-1.7.15/bin/win64 C:/Users/Boris/source/repos/VoxVR/out/build/x64-Debug"
   PRE_LINK = cd .
   TARGET_COMPILE_PDB = CMakeFiles\VoxVR.dir\
   TARGET_FILE = VoxVR.exe
@@ -419,230 +419,6 @@ build glfw-3.3\src\edit_cache: phony glfw-3.3\src\CMakeFiles\edit_cache.util
 build glfw-3.3\src\list_install_components: phony
 
 # =============================================================================
-# Write statements declared in CMakeLists.txt:
-# C:/Users/Boris/source/repos/VoxVR/CMakeLists.txt
-# =============================================================================
-
-
-#############################################
-# Utility command for install/local
-
-build openvr-1.7.15\CMakeFiles\install\local.util: CUSTOM_COMMAND openvr-1.7.15\all
-  COMMAND = cmd.exe /C "cd /D C:\Users\Boris\source\repos\VoxVR\out\build\x64-Debug\openvr-1.7.15 && "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake"
-  DESC = Installing only the local directory...
-  pool = console
-  restat = 1
-
-build openvr-1.7.15\install\local: phony openvr-1.7.15\CMakeFiles\install\local.util
-
-
-#############################################
-# Utility command for install
-
-build openvr-1.7.15\CMakeFiles\install.util: CUSTOM_COMMAND openvr-1.7.15\all
-  COMMAND = cmd.exe /C "cd /D C:\Users\Boris\source\repos\VoxVR\out\build\x64-Debug\openvr-1.7.15 && "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -P cmake_install.cmake"
-  DESC = Install the project...
-  pool = console
-  restat = 1
-
-build openvr-1.7.15\install: phony openvr-1.7.15\CMakeFiles\install.util
-
-
-#############################################
-# Utility command for edit_cache
-
-build openvr-1.7.15\CMakeFiles\edit_cache.util: CUSTOM_COMMAND
-  COMMAND = cmd.exe /C "cd /D C:\Users\Boris\source\repos\VoxVR\out\build\x64-Debug\openvr-1.7.15 && "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E echo "No interactive CMake dialog available.""
-  DESC = No interactive CMake dialog available...
-  restat = 1
-
-build openvr-1.7.15\edit_cache: phony openvr-1.7.15\CMakeFiles\edit_cache.util
-
-
-#############################################
-# Utility command for rebuild_cache
-
-build openvr-1.7.15\CMakeFiles\rebuild_cache.util: CUSTOM_COMMAND
-  COMMAND = cmd.exe /C "cd /D C:\Users\Boris\source\repos\VoxVR\out\build\x64-Debug\openvr-1.7.15 && "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SC:\Users\Boris\source\repos\VoxVR -BC:\Users\Boris\source\repos\VoxVR\out\build\x64-Debug"
-  DESC = Running CMake to regenerate build system...
-  pool = console
-  restat = 1
-
-build openvr-1.7.15\rebuild_cache: phony openvr-1.7.15\CMakeFiles\rebuild_cache.util
-
-
-#############################################
-# Utility command for list_install_components
-
-build openvr-1.7.15\list_install_components: phony
-
-# =============================================================================
-# Write statements declared in CMakeLists.txt:
-# C:/Users/Boris/source/repos/VoxVR/openvr-1.7.15/CMakeLists.txt
-# =============================================================================
-
-
-#############################################
-# Utility command for install/local
-
-build openvr-1.7.15\src\CMakeFiles\install\local.util: CUSTOM_COMMAND openvr-1.7.15\src\all
-  COMMAND = cmd.exe /C "cd /D C:\Users\Boris\source\repos\VoxVR\out\build\x64-Debug\openvr-1.7.15\src && "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake"
-  DESC = Installing only the local directory...
-  pool = console
-  restat = 1
-
-build openvr-1.7.15\src\install\local: phony openvr-1.7.15\src\CMakeFiles\install\local.util
-
-
-#############################################
-# Utility command for install
-
-build openvr-1.7.15\src\CMakeFiles\install.util: CUSTOM_COMMAND openvr-1.7.15\src\all
-  COMMAND = cmd.exe /C "cd /D C:\Users\Boris\source\repos\VoxVR\out\build\x64-Debug\openvr-1.7.15\src && "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -P cmake_install.cmake"
-  DESC = Install the project...
-  pool = console
-  restat = 1
-
-build openvr-1.7.15\src\install: phony openvr-1.7.15\src\CMakeFiles\install.util
-
-
-#############################################
-# Utility command for edit_cache
-
-build openvr-1.7.15\src\CMakeFiles\edit_cache.util: CUSTOM_COMMAND
-  COMMAND = cmd.exe /C "cd /D C:\Users\Boris\source\repos\VoxVR\out\build\x64-Debug\openvr-1.7.15\src && "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E echo "No interactive CMake dialog available.""
-  DESC = No interactive CMake dialog available...
-  restat = 1
-
-build openvr-1.7.15\src\edit_cache: phony openvr-1.7.15\src\CMakeFiles\edit_cache.util
-
-# =============================================================================
-# Object build statements for STATIC_LIBRARY target openvr_api64
-
-
-#############################################
-# Order-only phony target for openvr_api64
-
-build cmake_object_order_depends_target_openvr_api64: phony || openvr-1.7.15\src\CMakeFiles\openvr_api64.dir
-
-build openvr-1.7.15\src\CMakeFiles\openvr_api64.dir\openvr_api_public.cpp.obj: CXX_COMPILER__openvr_api64 ..\..\..\openvr-1.7.15\src\openvr_api_public.cpp || cmake_object_order_depends_target_openvr_api64
-  DEFINES = -DOPENVR_BUILD_STATIC -DVR_API_PUBLIC -DWIN64
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
-  INCLUDES = -I..\..\..\openvr-1.7.15\src -I..\..\..\openvr-1.7.15\src\..\headers -I..\..\..\openvr-1.7.15\src\vrcommon
-  OBJECT_DIR = openvr-1.7.15\src\CMakeFiles\openvr_api64.dir
-  OBJECT_FILE_DIR = openvr-1.7.15\src\CMakeFiles\openvr_api64.dir
-  TARGET_COMPILE_PDB = openvr-1.7.15\src\CMakeFiles\openvr_api64.dir\openvr_api64.pdb
-  TARGET_PDB = ..\..\..\openvr-1.7.15\bin\win64\openvr_api64.pdb
-
-build openvr-1.7.15\src\CMakeFiles\openvr_api64.dir\jsoncpp.cpp.obj: CXX_COMPILER__openvr_api64 ..\..\..\openvr-1.7.15\src\jsoncpp.cpp || cmake_object_order_depends_target_openvr_api64
-  DEFINES = -DOPENVR_BUILD_STATIC -DVR_API_PUBLIC -DWIN64
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
-  INCLUDES = -I..\..\..\openvr-1.7.15\src -I..\..\..\openvr-1.7.15\src\..\headers -I..\..\..\openvr-1.7.15\src\vrcommon
-  OBJECT_DIR = openvr-1.7.15\src\CMakeFiles\openvr_api64.dir
-  OBJECT_FILE_DIR = openvr-1.7.15\src\CMakeFiles\openvr_api64.dir
-  TARGET_COMPILE_PDB = openvr-1.7.15\src\CMakeFiles\openvr_api64.dir\openvr_api64.pdb
-  TARGET_PDB = ..\..\..\openvr-1.7.15\bin\win64\openvr_api64.pdb
-
-build openvr-1.7.15\src\CMakeFiles\openvr_api64.dir\vrcommon\dirtools_public.cpp.obj: CXX_COMPILER__openvr_api64 ..\..\..\openvr-1.7.15\src\vrcommon\dirtools_public.cpp || cmake_object_order_depends_target_openvr_api64
-  DEFINES = -DOPENVR_BUILD_STATIC -DVR_API_PUBLIC -DWIN64
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
-  INCLUDES = -I..\..\..\openvr-1.7.15\src -I..\..\..\openvr-1.7.15\src\..\headers -I..\..\..\openvr-1.7.15\src\vrcommon
-  OBJECT_DIR = openvr-1.7.15\src\CMakeFiles\openvr_api64.dir
-  OBJECT_FILE_DIR = openvr-1.7.15\src\CMakeFiles\openvr_api64.dir\vrcommon
-  TARGET_COMPILE_PDB = openvr-1.7.15\src\CMakeFiles\openvr_api64.dir\openvr_api64.pdb
-  TARGET_PDB = ..\..\..\openvr-1.7.15\bin\win64\openvr_api64.pdb
-
-build openvr-1.7.15\src\CMakeFiles\openvr_api64.dir\vrcommon\envvartools_public.cpp.obj: CXX_COMPILER__openvr_api64 ..\..\..\openvr-1.7.15\src\vrcommon\envvartools_public.cpp || cmake_object_order_depends_target_openvr_api64
-  DEFINES = -DOPENVR_BUILD_STATIC -DVR_API_PUBLIC -DWIN64
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
-  INCLUDES = -I..\..\..\openvr-1.7.15\src -I..\..\..\openvr-1.7.15\src\..\headers -I..\..\..\openvr-1.7.15\src\vrcommon
-  OBJECT_DIR = openvr-1.7.15\src\CMakeFiles\openvr_api64.dir
-  OBJECT_FILE_DIR = openvr-1.7.15\src\CMakeFiles\openvr_api64.dir\vrcommon
-  TARGET_COMPILE_PDB = openvr-1.7.15\src\CMakeFiles\openvr_api64.dir\openvr_api64.pdb
-  TARGET_PDB = ..\..\..\openvr-1.7.15\bin\win64\openvr_api64.pdb
-
-build openvr-1.7.15\src\CMakeFiles\openvr_api64.dir\vrcommon\pathtools_public.cpp.obj: CXX_COMPILER__openvr_api64 ..\..\..\openvr-1.7.15\src\vrcommon\pathtools_public.cpp || cmake_object_order_depends_target_openvr_api64
-  DEFINES = -DOPENVR_BUILD_STATIC -DVR_API_PUBLIC -DWIN64
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
-  INCLUDES = -I..\..\..\openvr-1.7.15\src -I..\..\..\openvr-1.7.15\src\..\headers -I..\..\..\openvr-1.7.15\src\vrcommon
-  OBJECT_DIR = openvr-1.7.15\src\CMakeFiles\openvr_api64.dir
-  OBJECT_FILE_DIR = openvr-1.7.15\src\CMakeFiles\openvr_api64.dir\vrcommon
-  TARGET_COMPILE_PDB = openvr-1.7.15\src\CMakeFiles\openvr_api64.dir\openvr_api64.pdb
-  TARGET_PDB = ..\..\..\openvr-1.7.15\bin\win64\openvr_api64.pdb
-
-build openvr-1.7.15\src\CMakeFiles\openvr_api64.dir\vrcommon\sharedlibtools_public.cpp.obj: CXX_COMPILER__openvr_api64 ..\..\..\openvr-1.7.15\src\vrcommon\sharedlibtools_public.cpp || cmake_object_order_depends_target_openvr_api64
-  DEFINES = -DOPENVR_BUILD_STATIC -DVR_API_PUBLIC -DWIN64
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
-  INCLUDES = -I..\..\..\openvr-1.7.15\src -I..\..\..\openvr-1.7.15\src\..\headers -I..\..\..\openvr-1.7.15\src\vrcommon
-  OBJECT_DIR = openvr-1.7.15\src\CMakeFiles\openvr_api64.dir
-  OBJECT_FILE_DIR = openvr-1.7.15\src\CMakeFiles\openvr_api64.dir\vrcommon
-  TARGET_COMPILE_PDB = openvr-1.7.15\src\CMakeFiles\openvr_api64.dir\openvr_api64.pdb
-  TARGET_PDB = ..\..\..\openvr-1.7.15\bin\win64\openvr_api64.pdb
-
-build openvr-1.7.15\src\CMakeFiles\openvr_api64.dir\vrcommon\hmderrors_public.cpp.obj: CXX_COMPILER__openvr_api64 ..\..\..\openvr-1.7.15\src\vrcommon\hmderrors_public.cpp || cmake_object_order_depends_target_openvr_api64
-  DEFINES = -DOPENVR_BUILD_STATIC -DVR_API_PUBLIC -DWIN64
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
-  INCLUDES = -I..\..\..\openvr-1.7.15\src -I..\..\..\openvr-1.7.15\src\..\headers -I..\..\..\openvr-1.7.15\src\vrcommon
-  OBJECT_DIR = openvr-1.7.15\src\CMakeFiles\openvr_api64.dir
-  OBJECT_FILE_DIR = openvr-1.7.15\src\CMakeFiles\openvr_api64.dir\vrcommon
-  TARGET_COMPILE_PDB = openvr-1.7.15\src\CMakeFiles\openvr_api64.dir\openvr_api64.pdb
-  TARGET_PDB = ..\..\..\openvr-1.7.15\bin\win64\openvr_api64.pdb
-
-build openvr-1.7.15\src\CMakeFiles\openvr_api64.dir\vrcommon\vrpathregistry_public.cpp.obj: CXX_COMPILER__openvr_api64 ..\..\..\openvr-1.7.15\src\vrcommon\vrpathregistry_public.cpp || cmake_object_order_depends_target_openvr_api64
-  DEFINES = -DOPENVR_BUILD_STATIC -DVR_API_PUBLIC -DWIN64
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
-  INCLUDES = -I..\..\..\openvr-1.7.15\src -I..\..\..\openvr-1.7.15\src\..\headers -I..\..\..\openvr-1.7.15\src\vrcommon
-  OBJECT_DIR = openvr-1.7.15\src\CMakeFiles\openvr_api64.dir
-  OBJECT_FILE_DIR = openvr-1.7.15\src\CMakeFiles\openvr_api64.dir\vrcommon
-  TARGET_COMPILE_PDB = openvr-1.7.15\src\CMakeFiles\openvr_api64.dir\openvr_api64.pdb
-  TARGET_PDB = ..\..\..\openvr-1.7.15\bin\win64\openvr_api64.pdb
-
-build openvr-1.7.15\src\CMakeFiles\openvr_api64.dir\vrcommon\strtools_public.cpp.obj: CXX_COMPILER__openvr_api64 ..\..\..\openvr-1.7.15\src\vrcommon\strtools_public.cpp || cmake_object_order_depends_target_openvr_api64
-  DEFINES = -DOPENVR_BUILD_STATIC -DVR_API_PUBLIC -DWIN64
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
-  INCLUDES = -I..\..\..\openvr-1.7.15\src -I..\..\..\openvr-1.7.15\src\..\headers -I..\..\..\openvr-1.7.15\src\vrcommon
-  OBJECT_DIR = openvr-1.7.15\src\CMakeFiles\openvr_api64.dir
-  OBJECT_FILE_DIR = openvr-1.7.15\src\CMakeFiles\openvr_api64.dir\vrcommon
-  TARGET_COMPILE_PDB = openvr-1.7.15\src\CMakeFiles\openvr_api64.dir\openvr_api64.pdb
-  TARGET_PDB = ..\..\..\openvr-1.7.15\bin\win64\openvr_api64.pdb
-
-
-# =============================================================================
-# Link build statements for STATIC_LIBRARY target openvr_api64
-
-
-#############################################
-# Link the static library ..\..\..\openvr-1.7.15\bin\win64\openvr_api64.lib
-
-build ..\..\..\openvr-1.7.15\bin\win64\openvr_api64.lib: CXX_STATIC_LIBRARY_LINKER__openvr_api64 openvr-1.7.15\src\CMakeFiles\openvr_api64.dir\openvr_api_public.cpp.obj openvr-1.7.15\src\CMakeFiles\openvr_api64.dir\jsoncpp.cpp.obj openvr-1.7.15\src\CMakeFiles\openvr_api64.dir\vrcommon\dirtools_public.cpp.obj openvr-1.7.15\src\CMakeFiles\openvr_api64.dir\vrcommon\envvartools_public.cpp.obj openvr-1.7.15\src\CMakeFiles\openvr_api64.dir\vrcommon\pathtools_public.cpp.obj openvr-1.7.15\src\CMakeFiles\openvr_api64.dir\vrcommon\sharedlibtools_public.cpp.obj openvr-1.7.15\src\CMakeFiles\openvr_api64.dir\vrcommon\hmderrors_public.cpp.obj openvr-1.7.15\src\CMakeFiles\openvr_api64.dir\vrcommon\vrpathregistry_public.cpp.obj openvr-1.7.15\src\CMakeFiles\openvr_api64.dir\vrcommon\strtools_public.cpp.obj
-  LANGUAGE_COMPILE_FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
-  LINK_FLAGS = /machine:x64
-  OBJECT_DIR = openvr-1.7.15\src\CMakeFiles\openvr_api64.dir
-  POST_BUILD = cd .
-  PRE_LINK = cd .
-  TARGET_COMPILE_PDB = openvr-1.7.15\src\CMakeFiles\openvr_api64.dir\openvr_api64.pdb
-  TARGET_FILE = ..\..\..\openvr-1.7.15\bin\win64\openvr_api64.lib
-  TARGET_PDB = ..\..\..\openvr-1.7.15\bin\win64\openvr_api64.pdb
-
-
-#############################################
-# Utility command for rebuild_cache
-
-build openvr-1.7.15\src\CMakeFiles\rebuild_cache.util: CUSTOM_COMMAND
-  COMMAND = cmd.exe /C "cd /D C:\Users\Boris\source\repos\VoxVR\out\build\x64-Debug\openvr-1.7.15\src && "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SC:\Users\Boris\source\repos\VoxVR -BC:\Users\Boris\source\repos\VoxVR\out\build\x64-Debug"
-  DESC = Running CMake to regenerate build system...
-  pool = console
-  restat = 1
-
-build openvr-1.7.15\src\rebuild_cache: phony openvr-1.7.15\src\CMakeFiles\rebuild_cache.util
-
-
-#############################################
-# Utility command for list_install_components
-
-build openvr-1.7.15\src\list_install_components: phony
-
-# =============================================================================
 # Target aliases.
 
 build VoxVR: phony VoxVR.exe
@@ -650,10 +426,6 @@ build VoxVR: phony VoxVR.exe
 build glfw: phony glfw-3.3\src\glfw3.lib
 
 build glfw3.lib: phony glfw-3.3\src\glfw3.lib
-
-build openvr_api64: phony ..\..\..\openvr-1.7.15\bin\win64\openvr_api64.lib
-
-build openvr_api64.lib: phony ..\..\..\openvr-1.7.15\bin\win64\openvr_api64.lib
 
 build uninstall: phony glfw-3.3\uninstall
 
@@ -675,27 +447,13 @@ build glfw-3.3\all: phony glfw-3.3\src\all
 build glfw-3.3\src\all: phony glfw
 
 # =============================================================================
-
-#############################################
-# Folder: C:/Users/Boris/source/repos/VoxVR/out/build/x64-Debug/openvr-1.7.15
-
-build openvr-1.7.15\all: phony openvr-1.7.15\src\all
-
-# =============================================================================
-
-#############################################
-# Folder: C:/Users/Boris/source/repos/VoxVR/out/build/x64-Debug/openvr-1.7.15/src
-
-build openvr-1.7.15\src\all: phony openvr_api64
-
-# =============================================================================
 # Built-in targets
 
 
 #############################################
 # The main all target.
 
-build all: phony VoxVR.exe glfw-3.3\src\glfw3.lib ..\..\..\openvr-1.7.15\bin\win64\openvr_api64.lib
+build all: phony VoxVR.exe glfw-3.3\src\glfw3.lib
 
 
 #############################################
@@ -706,14 +464,14 @@ default all
 #############################################
 # Re-run CMake if any of its inputs changed.
 
-build build.ninja: RERUN_CMAKE | ..\..\..\CMakeLists.txt ..\..\..\glfw-3.3\CMakeLists.txt ..\..\..\glfw-3.3\cmake_uninstall.cmake.in ..\..\..\glfw-3.3\src\CMakeLists.txt ..\..\..\glfw-3.3\src\glfw3.pc.in ..\..\..\glfw-3.3\src\glfw3Config.cmake.in ..\..\..\glfw-3.3\src\glfw_config.h.in ..\..\..\openvr-1.7.15\CMakeLists.txt ..\..\..\openvr-1.7.15\src\CMakeLists.txt C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.15\Modules\BasicConfigVersion-SameMajorVersion.cmake.in C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.15\Modules\CMakeCInformation.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.15\Modules\CMakeCXXInformation.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.15\Modules\CMakeCommonLanguageInclude.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.15\Modules\CMakeGenericSystem.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.15\Modules\CMakeInitializeConfigs.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.15\Modules\CMakeLanguageInformation.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.15\Modules\CMakePackageConfigHelpers.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.15\Modules\CMakeRCInformation.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.15\Modules\CMakeSystemSpecificInformation.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.15\Modules\CMakeSystemSpecificInitialize.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.15\Modules\CheckCSourceCompiles.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.15\Modules\CheckIncludeFile.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.15\Modules\CheckLibraryExists.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.15\Modules\Compiler\CMakeCommonCompilerMacros.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.15\Modules\Compiler\MSVC-C.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.15\Modules\Compiler\MSVC-CXX.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.15\Modules\FindOpenGL.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.15\Modules\FindPackageHandleStandardArgs.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.15\Modules\FindPackageMessage.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.15\Modules\FindThreads.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.15\Modules\GNUInstallDirs.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.15\Modules\Platform\Windows-MSVC-C.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.15\Modules\Platform\Windows-MSVC-CXX.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.15\Modules\Platform\Windows-MSVC.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.15\Modules\Platform\Windows.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.15\Modules\Platform\WindowsPaths.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.15\Modules\WriteBasicConfigVersionFile.cmake CMakeCache.txt CMakeFiles\3.15.19080502-MSVC_2\CMakeCCompiler.cmake CMakeFiles\3.15.19080502-MSVC_2\CMakeCXXCompiler.cmake CMakeFiles\3.15.19080502-MSVC_2\CMakeRCCompiler.cmake CMakeFiles\3.15.19080502-MSVC_2\CMakeSystem.cmake
+build build.ninja: RERUN_CMAKE | ..\..\..\CMakeLists.txt ..\..\..\CMake\FindOpenVR.cmake ..\..\..\glfw-3.3\CMakeLists.txt ..\..\..\glfw-3.3\cmake_uninstall.cmake.in ..\..\..\glfw-3.3\src\CMakeLists.txt ..\..\..\glfw-3.3\src\glfw3.pc.in ..\..\..\glfw-3.3\src\glfw3Config.cmake.in ..\..\..\glfw-3.3\src\glfw_config.h.in C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.15\Modules\BasicConfigVersion-SameMajorVersion.cmake.in C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.15\Modules\CMakeCInformation.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.15\Modules\CMakeCXXInformation.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.15\Modules\CMakeCommonLanguageInclude.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.15\Modules\CMakeGenericSystem.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.15\Modules\CMakeInitializeConfigs.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.15\Modules\CMakeLanguageInformation.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.15\Modules\CMakePackageConfigHelpers.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.15\Modules\CMakeRCInformation.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.15\Modules\CMakeSystemSpecificInformation.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.15\Modules\CMakeSystemSpecificInitialize.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.15\Modules\CheckCSourceCompiles.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.15\Modules\CheckIncludeFile.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.15\Modules\CheckLibraryExists.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.15\Modules\Compiler\CMakeCommonCompilerMacros.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.15\Modules\Compiler\MSVC-C.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.15\Modules\Compiler\MSVC-CXX.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.15\Modules\FindOpenGL.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.15\Modules\FindPackageHandleStandardArgs.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.15\Modules\FindPackageMessage.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.15\Modules\FindThreads.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.15\Modules\GNUInstallDirs.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.15\Modules\Platform\Windows-MSVC-C.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.15\Modules\Platform\Windows-MSVC-CXX.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.15\Modules\Platform\Windows-MSVC.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.15\Modules\Platform\Windows.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.15\Modules\Platform\WindowsPaths.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.15\Modules\WriteBasicConfigVersionFile.cmake CMakeCache.txt CMakeFiles\3.15.19080502-MSVC_2\CMakeCCompiler.cmake CMakeFiles\3.15.19080502-MSVC_2\CMakeCXXCompiler.cmake CMakeFiles\3.15.19080502-MSVC_2\CMakeRCCompiler.cmake CMakeFiles\3.15.19080502-MSVC_2\CMakeSystem.cmake
   pool = console
 
 
 #############################################
 # A missing CMake input file is not an error.
 
-build ..\..\..\CMakeLists.txt ..\..\..\glfw-3.3\CMakeLists.txt ..\..\..\glfw-3.3\cmake_uninstall.cmake.in ..\..\..\glfw-3.3\src\CMakeLists.txt ..\..\..\glfw-3.3\src\glfw3.pc.in ..\..\..\glfw-3.3\src\glfw3Config.cmake.in ..\..\..\glfw-3.3\src\glfw_config.h.in ..\..\..\openvr-1.7.15\CMakeLists.txt ..\..\..\openvr-1.7.15\src\CMakeLists.txt C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.15\Modules\BasicConfigVersion-SameMajorVersion.cmake.in C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.15\Modules\CMakeCInformation.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.15\Modules\CMakeCXXInformation.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.15\Modules\CMakeCommonLanguageInclude.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.15\Modules\CMakeGenericSystem.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.15\Modules\CMakeInitializeConfigs.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.15\Modules\CMakeLanguageInformation.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.15\Modules\CMakePackageConfigHelpers.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.15\Modules\CMakeRCInformation.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.15\Modules\CMakeSystemSpecificInformation.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.15\Modules\CMakeSystemSpecificInitialize.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.15\Modules\CheckCSourceCompiles.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.15\Modules\CheckIncludeFile.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.15\Modules\CheckLibraryExists.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.15\Modules\Compiler\CMakeCommonCompilerMacros.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.15\Modules\Compiler\MSVC-C.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.15\Modules\Compiler\MSVC-CXX.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.15\Modules\FindOpenGL.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.15\Modules\FindPackageHandleStandardArgs.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.15\Modules\FindPackageMessage.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.15\Modules\FindThreads.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.15\Modules\GNUInstallDirs.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.15\Modules\Platform\Windows-MSVC-C.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.15\Modules\Platform\Windows-MSVC-CXX.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.15\Modules\Platform\Windows-MSVC.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.15\Modules\Platform\Windows.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.15\Modules\Platform\WindowsPaths.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.15\Modules\WriteBasicConfigVersionFile.cmake CMakeCache.txt CMakeFiles\3.15.19080502-MSVC_2\CMakeCCompiler.cmake CMakeFiles\3.15.19080502-MSVC_2\CMakeCXXCompiler.cmake CMakeFiles\3.15.19080502-MSVC_2\CMakeRCCompiler.cmake CMakeFiles\3.15.19080502-MSVC_2\CMakeSystem.cmake: phony
+build ..\..\..\CMakeLists.txt ..\..\..\CMake\FindOpenVR.cmake ..\..\..\glfw-3.3\CMakeLists.txt ..\..\..\glfw-3.3\cmake_uninstall.cmake.in ..\..\..\glfw-3.3\src\CMakeLists.txt ..\..\..\glfw-3.3\src\glfw3.pc.in ..\..\..\glfw-3.3\src\glfw3Config.cmake.in ..\..\..\glfw-3.3\src\glfw_config.h.in C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.15\Modules\BasicConfigVersion-SameMajorVersion.cmake.in C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.15\Modules\CMakeCInformation.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.15\Modules\CMakeCXXInformation.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.15\Modules\CMakeCommonLanguageInclude.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.15\Modules\CMakeGenericSystem.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.15\Modules\CMakeInitializeConfigs.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.15\Modules\CMakeLanguageInformation.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.15\Modules\CMakePackageConfigHelpers.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.15\Modules\CMakeRCInformation.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.15\Modules\CMakeSystemSpecificInformation.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.15\Modules\CMakeSystemSpecificInitialize.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.15\Modules\CheckCSourceCompiles.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.15\Modules\CheckIncludeFile.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.15\Modules\CheckLibraryExists.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.15\Modules\Compiler\CMakeCommonCompilerMacros.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.15\Modules\Compiler\MSVC-C.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.15\Modules\Compiler\MSVC-CXX.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.15\Modules\FindOpenGL.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.15\Modules\FindPackageHandleStandardArgs.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.15\Modules\FindPackageMessage.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.15\Modules\FindThreads.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.15\Modules\GNUInstallDirs.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.15\Modules\Platform\Windows-MSVC-C.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.15\Modules\Platform\Windows-MSVC-CXX.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.15\Modules\Platform\Windows-MSVC.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.15\Modules\Platform\Windows.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.15\Modules\Platform\WindowsPaths.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.15\Modules\WriteBasicConfigVersionFile.cmake CMakeCache.txt CMakeFiles\3.15.19080502-MSVC_2\CMakeCCompiler.cmake CMakeFiles\3.15.19080502-MSVC_2\CMakeCXXCompiler.cmake CMakeFiles\3.15.19080502-MSVC_2\CMakeRCCompiler.cmake CMakeFiles\3.15.19080502-MSVC_2\CMakeSystem.cmake: phony
 
 
 #############################################

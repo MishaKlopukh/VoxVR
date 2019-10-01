@@ -150,7 +150,7 @@ CMAKE_INSTALL_SYSCONFDIR:PATH=etc
 CMAKE_LINKER:FILEPATH=C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/VC/Tools/MSVC/14.23.28105/bin/Hostx64/x64/link.exe
 
 //make program
-CMAKE_MAKE_PROGRAM:FILEPATH=C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe
+CMAKE_MAKE_PROGRAM:FILEPATH=C:/PROGRA~2/MICROS~1/2019/COMMUN~1/Common7/IDE/COMMON~1/MICROS~1/CMake/Ninja/ninja.exe
 
 //Flags used by the linker during the creation of modules during
 // all build types.
@@ -294,11 +294,26 @@ OPENGL_gl_LIBRARY:STRING=opengl32
 //GLU library for win32
 OPENGL_glu_LIBRARY:STRING=glu32
 
+//Directory to search for private OpenVR headers
+OPENVR_HEADERS_ROOT_DIR:PATH=
+
+//Path to a file.
+OPENVR_INCLUDE_DIR:PATH=C:/Users/Boris/source/repos/VoxVR/openvr-1.7.15/headers
+
+//Where the openvr Library can be found
+OPENVR_LIBRARY:STRING=C:/Users/Boris/source/repos/VoxVR/openvr-1.7.15/lib/win64/openvr_api.lib
+
+//Directory to search for OpenVR SDK
+OPENVR_ROOT_DIR:PATH=C:/Users/Boris/source/repos/VoxVR/openvr-1.7.15
+
 //Value Computed by CMake
 OpenVRSDK_BINARY_DIR:STATIC=C:/Users/Boris/source/repos/VoxVR/out/build/x64-Debug/openvr-1.7.15
 
 //Value Computed by CMake
 OpenVRSDK_SOURCE_DIR:STATIC=C:/Users/Boris/source/repos/VoxVR/openvr-1.7.15
+
+//The directory containing a CMake configuration file for OpenVR.
+OpenVR_DIR:PATH=OpenVR_DIR-NOTFOUND
 
 //Uses a custom libc++
 USE_CUSTOM_LIBCXX:BOOL=OFF
@@ -315,8 +330,14 @@ VoxVR_BINARY_DIR:STATIC=C:/Users/Boris/source/repos/VoxVR/out/build/x64-Debug
 //Value Computed by CMake
 VoxVR_SOURCE_DIR:STATIC=C:/Users/Boris/source/repos/VoxVR
 
+//The directory containing a CMake configuration file for openvr.
+openvr_DIR:PATH=openvr_DIR-NOTFOUND
+
 //Value Computed by CMake
 openvr_api_BINARY_DIR:STATIC=C:/Users/Boris/source/repos/VoxVR/out/build/x64-Debug/openvr-1.7.15/src
+
+//The directory containing a CMake configuration file for openvr_api.
+openvr_api_DIR:PATH=openvr_api_DIR-NOTFOUND
 
 //Value Computed by CMake
 openvr_api_SOURCE_DIR:STATIC=C:/Users/Boris/source/repos/VoxVR/openvr-1.7.15/src
@@ -444,7 +465,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_MT
 CMAKE_MT-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=5
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=3
 //Platform information initialized
 CMAKE_PLATFORM_INFO_INITIALIZED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_RC_COMPILER
@@ -490,6 +511,8 @@ CMAKE_STATIC_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 CMAKE_VERBOSE_MAKEFILE-ADVANCED:INTERNAL=1
 //Details about finding OpenGL
 FIND_PACKAGE_MESSAGE_DETAILS_OpenGL:INTERNAL=[opengl32][c ][v()]
+//Details about finding OpenVR
+FIND_PACKAGE_MESSAGE_DETAILS_OpenVR:INTERNAL=[C:/Users/Boris/source/repos/VoxVR/openvr-1.7.15/headers][C:/Users/Boris/source/repos/VoxVR/openvr-1.7.15/lib/win64/openvr_api.lib][v()]
 //Details about finding Threads
 FIND_PACKAGE_MESSAGE_DETAILS_Threads:INTERNAL=[TRUE][v()]
 //ADVANCED property for variable: GLUT_glut_LIBRARY_DEBUG
@@ -500,6 +523,11 @@ GLUT_glut_LIBRARY_RELEASE-ADVANCED:INTERNAL=1
 OPENGL_gl_LIBRARY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: OPENGL_glu_LIBRARY
 OPENGL_glu_LIBRARY-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: OPENVR_INCLUDE_DIR
+OPENVR_INCLUDE_DIR-ADVANCED:INTERNAL=1
+OPENVR_LIBRARY_TEMP:INTERNAL=C:/Users/Boris/source/repos/VoxVR/openvr-1.7.15/lib/win64/openvr_api.lib
+//ADVANCED property for variable: OPENVR_ROOT_DIR
+OPENVR_ROOT_DIR-ADVANCED:INTERNAL=1
 //CMAKE_INSTALL_PREFIX during last run
 _GNUInstallDirs_LAST_CMAKE_INSTALL_PREFIX:INTERNAL=C:/Users/Boris/source/repos/VoxVR/out/install/x64-Debug
 

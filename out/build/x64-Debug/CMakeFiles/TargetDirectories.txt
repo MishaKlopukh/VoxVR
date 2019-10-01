@@ -16,14 +16,3 @@ C:/Users/Boris/source/repos/VoxVR/out/build/x64-Debug/glfw-3.3/src/CMakeFiles/in
 C:/Users/Boris/source/repos/VoxVR/out/build/x64-Debug/glfw-3.3/src/CMakeFiles/install.dir
 C:/Users/Boris/source/repos/VoxVR/out/build/x64-Debug/glfw-3.3/src/CMakeFiles/edit_cache.dir
 C:/Users/Boris/source/repos/VoxVR/out/build/x64-Debug/glfw-3.3/src/CMakeFiles/list_install_components.dir
-C:/Users/Boris/source/repos/VoxVR/out/build/x64-Debug/openvr-1.7.15/CMakeFiles/install/local.dir
-C:/Users/Boris/source/repos/VoxVR/out/build/x64-Debug/openvr-1.7.15/CMakeFiles/install.dir
-C:/Users/Boris/source/repos/VoxVR/out/build/x64-Debug/openvr-1.7.15/CMakeFiles/edit_cache.dir
-C:/Users/Boris/source/repos/VoxVR/out/build/x64-Debug/openvr-1.7.15/CMakeFiles/rebuild_cache.dir
-C:/Users/Boris/source/repos/VoxVR/out/build/x64-Debug/openvr-1.7.15/CMakeFiles/list_install_components.dir
-C:/Users/Boris/source/repos/VoxVR/out/build/x64-Debug/openvr-1.7.15/src/CMakeFiles/install/local.dir
-C:/Users/Boris/source/repos/VoxVR/out/build/x64-Debug/openvr-1.7.15/src/CMakeFiles/install.dir
-C:/Users/Boris/source/repos/VoxVR/out/build/x64-Debug/openvr-1.7.15/src/CMakeFiles/edit_cache.dir
-C:/Users/Boris/source/repos/VoxVR/out/build/x64-Debug/openvr-1.7.15/src/CMakeFiles/openvr_api64.dir
-C:/Users/Boris/source/repos/VoxVR/out/build/x64-Debug/openvr-1.7.15/src/CMakeFiles/rebuild_cache.dir
-C:/Users/Boris/source/repos/VoxVR/out/build/x64-Debug/openvr-1.7.15/src/CMakeFiles/list_install_components.dir

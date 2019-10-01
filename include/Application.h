@@ -29,7 +29,9 @@ private:
 	void render();
 	void cleanup();
 
+	void initVR();
+
 	bool should_close;
 	GLFWwindow* window;
-	//vr::IVRSystem* HMD;
+	vr::IVRSystem* HMD;
 };

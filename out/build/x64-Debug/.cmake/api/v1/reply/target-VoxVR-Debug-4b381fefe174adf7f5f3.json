@@ -15,7 +15,8 @@
 		[
 			"add_executable",
 			"target_link_libraries",
-			"include_directories"
+			"include_directories",
+			"target_include_directories"
 		],
 		"files" : 
 		[
@@ -29,19 +30,25 @@
 			{
 				"command" : 0,
 				"file" : 0,
-				"line" : 20,
+				"line" : 21,
 				"parent" : 0
 			},
 			{
 				"command" : 1,
 				"file" : 0,
-				"line" : 24,
+				"line" : 29,
 				"parent" : 0
 			},
 			{
 				"command" : 2,
 				"file" : 0,
-				"line" : 18,
+				"line" : 19,
+				"parent" : 0
+			},
+			{
+				"command" : 3,
+				"file" : 0,
+				"line" : 28,
 				"parent" : 0
 			}
 		]
@@ -66,7 +73,7 @@
 					"path" : "C:/Users/Boris/source/repos/VoxVR/glfw-3.3/include"
 				},
 				{
-					"backtrace" : 3,
+					"backtrace" : 4,
 					"path" : "C:/Users/Boris/source/repos/VoxVR/openvr-1.7.15/headers"
 				}
 			],
@@ -99,7 +106,7 @@
 				"role" : "flags"
 			},
 			{
-				"fragment" : "glfw-3.3\\src\\glfw3.lib opengl32.lib glu32.lib kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib",
+				"fragment" : "glfw-3.3\\src\\glfw3.lib opengl32.lib glu32.lib ..\\..\\..\\openvr-1.7.15\\lib\\win64\\openvr_api.lib kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib",
 				"role" : "libraries"
 			}
 		],
