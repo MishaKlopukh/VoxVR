@@ -150,7 +150,7 @@ CMAKE_INSTALL_SYSCONFDIR:PATH=etc
 CMAKE_LINKER:FILEPATH=C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/VC/Tools/MSVC/14.23.28105/bin/Hostx64/x64/link.exe
 
 //make program
-CMAKE_MAKE_PROGRAM:FILEPATH=C:/PROGRA~2/MICROS~1/2019/COMMUN~1/Common7/IDE/COMMON~1/MICROS~1/CMake/Ninja/ninja.exe
+CMAKE_MAKE_PROGRAM:FILEPATH=C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe
 
 //Flags used by the linker during the creation of modules during
 // all build types.
@@ -314,6 +314,15 @@ OpenVRSDK_SOURCE_DIR:STATIC=C:/Users/Boris/source/repos/VoxVR/openvr-1.7.15
 
 //The directory containing a CMake configuration file for OpenVR.
 OpenVR_DIR:PATH=OpenVR_DIR-NOTFOUND
+
+//The directory containing a CMake configuration file for SDL2.
+SDL2_DIR:PATH=SDL2_DIR-NOTFOUND
+
+//Path to a library.
+SDLMAIN_LIBRARY:FILEPATH=SDLMAIN_LIBRARY-NOTFOUND
+
+//Path to a file.
+SDL_INCLUDE_DIR:PATH=SDL_INCLUDE_DIR-NOTFOUND
 
 //Uses a custom libc++
 USE_CUSTOM_LIBCXX:BOOL=OFF
@@ -528,6 +537,8 @@ OPENVR_INCLUDE_DIR-ADVANCED:INTERNAL=1
 OPENVR_LIBRARY_TEMP:INTERNAL=C:/Users/Boris/source/repos/VoxVR/openvr-1.7.15/lib/win64/openvr_api.lib
 //ADVANCED property for variable: OPENVR_ROOT_DIR
 OPENVR_ROOT_DIR-ADVANCED:INTERNAL=1
+//Path to a library.
+SDL_LIBRARY_TEMP:INTERNAL=SDL_LIBRARY_TEMP-NOTFOUND
 //CMAKE_INSTALL_PREFIX during last run
 _GNUInstallDirs_LAST_CMAKE_INSTALL_PREFIX:INTERNAL=C:/Users/Boris/source/repos/VoxVR/out/install/x64-Debug
 

@@ -42,7 +42,7 @@ build list_install_components: phony
 #############################################
 # Order-only phony target for VoxVR
 
-build cmake_object_order_depends_target_VoxVR: phony || cmake_object_order_depends_target_glfw
+build cmake_object_order_depends_target_VoxVR: phony || cmake_object_order_depends_target_BitMap cmake_object_order_depends_target_VoxelWorld cmake_object_order_depends_target_glfw cmake_object_order_depends_target_tinyfiledialogs cmake_object_order_depends_target_vrutil
 
 build CMakeFiles\VoxVR.dir\src\main.cpp.obj: CXX_COMPILER__VoxVR ..\..\..\src\main.cpp || cmake_object_order_depends_target_VoxVR
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
@@ -68,10 +68,10 @@ build CMakeFiles\VoxVR.dir\src\Application.cpp.obj: CXX_COMPILER__VoxVR ..\..\..
 #############################################
 # Link the executable VoxVR.exe
 
-build VoxVR.exe: CXX_EXECUTABLE_LINKER__VoxVR CMakeFiles\VoxVR.dir\src\main.cpp.obj CMakeFiles\VoxVR.dir\src\Application.cpp.obj | glfw-3.3\src\glfw3.lib ..\..\..\openvr-1.7.15\lib\win64\openvr_api.lib || glfw-3.3\src\glfw3.lib
+build VoxVR.exe: CXX_EXECUTABLE_LINKER__VoxVR CMakeFiles\VoxVR.dir\src\main.cpp.obj CMakeFiles\VoxVR.dir\src\Application.cpp.obj | VoxelWorld.lib BitMap.lib vrutil.lib tinyfiledialogs.lib glfw-3.3\src\glfw3.lib ..\..\..\openvr-1.7.15\lib\win64\openvr_api.lib || BitMap.lib VoxelWorld.lib glfw-3.3\src\glfw3.lib tinyfiledialogs.lib vrutil.lib
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
   LINK_FLAGS = /machine:x64 /debug /INCREMENTAL /subsystem:console
-  LINK_LIBRARIES = glfw-3.3\src\glfw3.lib opengl32.lib glu32.lib ..\..\..\openvr-1.7.15\lib\win64\openvr_api.lib kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib
+  LINK_LIBRARIES = VoxelWorld.lib BitMap.lib vrutil.lib tinyfiledialogs.lib glfw-3.3\src\glfw3.lib opengl32.lib glu32.lib ..\..\..\openvr-1.7.15\lib\win64\openvr_api.lib kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib
   OBJECT_DIR = CMakeFiles\VoxVR.dir
   POST_BUILD = cmd.exe /C "cd /D C:\Users\Boris\source\repos\VoxVR\out\build\x64-Debug && "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E copy_directory C:/Users/Boris/source/repos/VoxVR/openvr-1.7.15/bin/win64 C:/Users/Boris/source/repos/VoxVR/out/build/x64-Debug"
   PRE_LINK = cd .
@@ -80,17 +80,157 @@ build VoxVR.exe: CXX_EXECUTABLE_LINKER__VoxVR CMakeFiles\VoxVR.dir\src\main.cpp.
   TARGET_IMPLIB = VoxVR.lib
   TARGET_PDB = VoxVR.pdb
 
+# =============================================================================
+# Object build statements for STATIC_LIBRARY target tinyfiledialogs
+
 
 #############################################
-# Utility command for install/local
+# Order-only phony target for tinyfiledialogs
 
-build CMakeFiles\install\local.util: CUSTOM_COMMAND all
-  COMMAND = cmd.exe /C "cd /D C:\Users\Boris\source\repos\VoxVR\out\build\x64-Debug && "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake"
-  DESC = Installing only the local directory...
+build cmake_object_order_depends_target_tinyfiledialogs: phony || CMakeFiles\tinyfiledialogs.dir
+
+build CMakeFiles\tinyfiledialogs.dir\src\tinyfiledialogs.c.obj: C_COMPILER__tinyfiledialogs ..\..\..\src\tinyfiledialogs.c || cmake_object_order_depends_target_tinyfiledialogs
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /MDd /Zi /Ob0 /Od /RTC1
+  INCLUDES = -I..\..\..\include -I..\..\..\glfw-3.3\include
+  OBJECT_DIR = CMakeFiles\tinyfiledialogs.dir
+  OBJECT_FILE_DIR = CMakeFiles\tinyfiledialogs.dir\src
+  TARGET_COMPILE_PDB = CMakeFiles\tinyfiledialogs.dir\tinyfiledialogs.pdb
+  TARGET_PDB = tinyfiledialogs.pdb
+
+
+# =============================================================================
+# Link build statements for STATIC_LIBRARY target tinyfiledialogs
+
+
+#############################################
+# Link the static library tinyfiledialogs.lib
+
+build tinyfiledialogs.lib: C_STATIC_LIBRARY_LINKER__tinyfiledialogs CMakeFiles\tinyfiledialogs.dir\src\tinyfiledialogs.c.obj
+  LANGUAGE_COMPILE_FLAGS = /DWIN32 /D_WINDOWS /W3 /MDd /Zi /Ob0 /Od /RTC1
+  LINK_FLAGS = /machine:x64
+  OBJECT_DIR = CMakeFiles\tinyfiledialogs.dir
+  POST_BUILD = cd .
+  PRE_LINK = cd .
+  TARGET_COMPILE_PDB = CMakeFiles\tinyfiledialogs.dir\tinyfiledialogs.pdb
+  TARGET_FILE = tinyfiledialogs.lib
+  TARGET_PDB = tinyfiledialogs.pdb
+
+# =============================================================================
+# Object build statements for STATIC_LIBRARY target BitMap
+
+
+#############################################
+# Order-only phony target for BitMap
+
+build cmake_object_order_depends_target_BitMap: phony || CMakeFiles\BitMap.dir
+
+build CMakeFiles\BitMap.dir\src\BitMap.cpp.obj: CXX_COMPILER__BitMap ..\..\..\src\BitMap.cpp || cmake_object_order_depends_target_BitMap
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
+  INCLUDES = -I..\..\..\include -I..\..\..\glfw-3.3\include
+  OBJECT_DIR = CMakeFiles\BitMap.dir
+  OBJECT_FILE_DIR = CMakeFiles\BitMap.dir\src
+  TARGET_COMPILE_PDB = CMakeFiles\BitMap.dir\BitMap.pdb
+  TARGET_PDB = BitMap.pdb
+
+
+# =============================================================================
+# Link build statements for STATIC_LIBRARY target BitMap
+
+
+#############################################
+# Link the static library BitMap.lib
+
+build BitMap.lib: CXX_STATIC_LIBRARY_LINKER__BitMap CMakeFiles\BitMap.dir\src\BitMap.cpp.obj
+  LANGUAGE_COMPILE_FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
+  LINK_FLAGS = /machine:x64
+  OBJECT_DIR = CMakeFiles\BitMap.dir
+  POST_BUILD = cd .
+  PRE_LINK = cd .
+  TARGET_COMPILE_PDB = CMakeFiles\BitMap.dir\BitMap.pdb
+  TARGET_FILE = BitMap.lib
+  TARGET_PDB = BitMap.pdb
+
+
+#############################################
+# Utility command for rebuild_cache
+
+build CMakeFiles\rebuild_cache.util: CUSTOM_COMMAND
+  COMMAND = cmd.exe /C "cd /D C:\Users\Boris\source\repos\VoxVR\out\build\x64-Debug && "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SC:\Users\Boris\source\repos\VoxVR -BC:\Users\Boris\source\repos\VoxVR\out\build\x64-Debug"
+  DESC = Running CMake to regenerate build system...
   pool = console
   restat = 1
 
-build install\local: phony CMakeFiles\install\local.util
+build rebuild_cache: phony CMakeFiles\rebuild_cache.util
+
+# =============================================================================
+# Object build statements for STATIC_LIBRARY target vrutil
+
+
+#############################################
+# Order-only phony target for vrutil
+
+build cmake_object_order_depends_target_vrutil: phony || CMakeFiles\vrutil.dir
+
+build CMakeFiles\vrutil.dir\src\vrutil.cpp.obj: CXX_COMPILER__vrutil ..\..\..\src\vrutil.cpp || cmake_object_order_depends_target_vrutil
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
+  INCLUDES = -I..\..\..\include -I..\..\..\glfw-3.3\include -I..\..\..\openvr-1.7.15\headers
+  OBJECT_DIR = CMakeFiles\vrutil.dir
+  OBJECT_FILE_DIR = CMakeFiles\vrutil.dir\src
+  TARGET_COMPILE_PDB = CMakeFiles\vrutil.dir\vrutil.pdb
+  TARGET_PDB = vrutil.pdb
+
+
+# =============================================================================
+# Link build statements for STATIC_LIBRARY target vrutil
+
+
+#############################################
+# Link the static library vrutil.lib
+
+build vrutil.lib: CXX_STATIC_LIBRARY_LINKER__vrutil CMakeFiles\vrutil.dir\src\vrutil.cpp.obj
+  LANGUAGE_COMPILE_FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
+  LINK_FLAGS = /machine:x64
+  OBJECT_DIR = CMakeFiles\vrutil.dir
+  POST_BUILD = cd .
+  PRE_LINK = cd .
+  TARGET_COMPILE_PDB = CMakeFiles\vrutil.dir\vrutil.pdb
+  TARGET_FILE = vrutil.lib
+  TARGET_PDB = vrutil.pdb
+
+# =============================================================================
+# Object build statements for STATIC_LIBRARY target VoxelWorld
+
+
+#############################################
+# Order-only phony target for VoxelWorld
+
+build cmake_object_order_depends_target_VoxelWorld: phony || CMakeFiles\VoxelWorld.dir
+
+build CMakeFiles\VoxelWorld.dir\src\VoxelWorld.cpp.obj: CXX_COMPILER__VoxelWorld ..\..\..\src\VoxelWorld.cpp || cmake_object_order_depends_target_VoxelWorld
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
+  INCLUDES = -I..\..\..\include -I..\..\..\glfw-3.3\include -I..\..\..\openvr-1.7.15\headers
+  OBJECT_DIR = CMakeFiles\VoxelWorld.dir
+  OBJECT_FILE_DIR = CMakeFiles\VoxelWorld.dir\src
+  TARGET_COMPILE_PDB = CMakeFiles\VoxelWorld.dir\VoxelWorld.pdb
+  TARGET_PDB = VoxelWorld.pdb
+
+
+# =============================================================================
+# Link build statements for STATIC_LIBRARY target VoxelWorld
+
+
+#############################################
+# Link the static library VoxelWorld.lib
+
+build VoxelWorld.lib: CXX_STATIC_LIBRARY_LINKER__VoxelWorld CMakeFiles\VoxelWorld.dir\src\VoxelWorld.cpp.obj
+  LANGUAGE_COMPILE_FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
+  LINK_FLAGS = /machine:x64
+  OBJECT_DIR = CMakeFiles\VoxelWorld.dir
+  POST_BUILD = cd .
+  PRE_LINK = cd .
+  TARGET_COMPILE_PDB = CMakeFiles\VoxelWorld.dir\VoxelWorld.pdb
+  TARGET_FILE = VoxelWorld.lib
+  TARGET_PDB = VoxelWorld.pdb
 
 
 #############################################
@@ -117,15 +257,15 @@ build edit_cache: phony CMakeFiles\edit_cache.util
 
 
 #############################################
-# Utility command for rebuild_cache
+# Utility command for install/local
 
-build CMakeFiles\rebuild_cache.util: CUSTOM_COMMAND
-  COMMAND = cmd.exe /C "cd /D C:\Users\Boris\source\repos\VoxVR\out\build\x64-Debug && "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SC:\Users\Boris\source\repos\VoxVR -BC:\Users\Boris\source\repos\VoxVR\out\build\x64-Debug"
-  DESC = Running CMake to regenerate build system...
+build CMakeFiles\install\local.util: CUSTOM_COMMAND all
+  COMMAND = cmd.exe /C "cd /D C:\Users\Boris\source\repos\VoxVR\out\build\x64-Debug && "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake"
+  DESC = Installing only the local directory...
   pool = console
   restat = 1
 
-build rebuild_cache: phony CMakeFiles\rebuild_cache.util
+build install\local: phony CMakeFiles\install\local.util
 
 # =============================================================================
 # Write statements declared in CMakeLists.txt:
@@ -421,13 +561,21 @@ build glfw-3.3\src\list_install_components: phony
 # =============================================================================
 # Target aliases.
 
+build BitMap: phony BitMap.lib
+
 build VoxVR: phony VoxVR.exe
+
+build VoxelWorld: phony VoxelWorld.lib
 
 build glfw: phony glfw-3.3\src\glfw3.lib
 
 build glfw3.lib: phony glfw-3.3\src\glfw3.lib
 
+build tinyfiledialogs: phony tinyfiledialogs.lib
+
 build uninstall: phony glfw-3.3\uninstall
+
+build vrutil: phony vrutil.lib
 
 # =============================================================================
 # Folder targets.
@@ -453,7 +601,7 @@ build glfw-3.3\src\all: phony glfw
 #############################################
 # The main all target.
 
-build all: phony VoxVR.exe glfw-3.3\src\glfw3.lib
+build all: phony VoxVR.exe tinyfiledialogs.lib BitMap.lib vrutil.lib VoxelWorld.lib glfw-3.3\src\glfw3.lib
 
 
 #############################################

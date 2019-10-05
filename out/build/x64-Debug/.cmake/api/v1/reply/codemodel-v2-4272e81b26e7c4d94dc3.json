@@ -1,0 +1,166 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1
+					],
+					"hasInstallRule" : true,
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.8"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						4,
+						6
+					]
+				},
+				{
+					"build" : "glfw-3.3",
+					"childIndexes" : 
+					[
+						2
+					],
+					"hasInstallRule" : true,
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.0"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 1,
+					"source" : "glfw-3.3",
+					"targetIndexes" : 
+					[
+						5
+					]
+				},
+				{
+					"build" : "glfw-3.3/src",
+					"hasInstallRule" : true,
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.0"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 1,
+					"source" : "glfw-3.3/src",
+					"targetIndexes" : 
+					[
+						3
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"childIndexes" : 
+					[
+						1
+					],
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "VoxVR",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						4,
+						6
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						1,
+						2
+					],
+					"name" : "GLFW",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						3,
+						5
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "BitMap::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-BitMap-Debug-fd6d07a77d5599b43e81.json",
+					"name" : "BitMap",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "VoxVR::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-VoxVR-Debug-d3ac03a2226dbb81a279.json",
+					"name" : "VoxVR",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "VoxelWorld::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-VoxelWorld-Debug-eee617eaefef452960a4.json",
+					"name" : "VoxelWorld",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "glfw::@f43c2ab487b2427fc6ac",
+					"jsonFile" : "target-glfw-Debug-6d5945f064b3d7687638.json",
+					"name" : "glfw",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "tinyfiledialogs::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-tinyfiledialogs-Debug-20e8d7debf3f4bb4192e.json",
+					"name" : "tinyfiledialogs",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "uninstall::@68482985875db855cca6",
+					"jsonFile" : "target-uninstall-Debug-b74baa260439ef655c9d.json",
+					"name" : "uninstall",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "vrutil::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-vrutil-Debug-cf96a3dba556c1c37275.json",
+					"name" : "vrutil",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "C:/Users/Boris/source/repos/VoxVR/out/build/x64-Debug",
+		"source" : "C:/Users/Boris/source/repos/VoxVR"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 0
+	}
+}

@@ -7,6 +7,7 @@
 #include <cstdlib>
 #include <iostream>
 #include <openvr.h>
+#include <vrutil.h>
 
 const int WIDTH = 800;
 const int HEIGHT = 600;
@@ -34,4 +35,7 @@ private:
 	bool should_close;
 	GLFWwindow* window;
 	vr::IVRSystem* HMD;
+
+	bool is_gripping_left;
+	bool is_gripping_right;
 };
