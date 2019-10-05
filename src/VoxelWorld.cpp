@@ -20,7 +20,11 @@ void VoxelWorld::transform(glm::mat4x4 transformation) {
 	globaltransform = globaltransform * transformation;
 }
 
-void VoxelWorld::loadBitmapData(char* fname, int z_index) {
+void VoxelWorld::setCameraTransform(glm::mat4x4 transformation) {
+	cameratransform = transformation;
+}
+
+void VoxelWorld::loadBitmapData(const char* fname, int z_index) {
 	loadBitmapData(BitMap(fname), z_index);
 }
 
@@ -36,7 +40,7 @@ void VoxelWorld::render(int resx, int resy, glm::mat4x4 projection, GLuint& tex)
 		for (int y = 0; y < maxy; y++) {
 			for (int z = maxz-1; z >= 0; z--) {
 				point = glm::vec4(x, y, z, 1.0f);
-				point = projection * globaltransform * point;
+				point = projection * cameratransform * globaltransform * point;
 				point /= point.w;
 				if (point.z >= 0 && point.z <= 1 && point.x <= 1 && point.x >= 0 && point.y <= 1 && point.y >= 0) {
 					px = floor(point.x * resx);
@@ -57,7 +61,7 @@ void VoxelWorld::render(int resx, int resy, glm::mat4x4 projection, GLuint& tex)
 	}
 	glBindTexture(GL_TEXTURE_2D, tex);
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, resx, resy, 0, GL_RGB, GL_UNSIGNED_BYTE, renderbuffer);
-	glGenerateMipmap(GL_TEXTURE_2D);
+	//glGenerateMipmap(GL_TEXTURE_2D);
 	free(renderbuffer);
 }
 

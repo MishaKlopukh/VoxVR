@@ -16,12 +16,14 @@ public:
 	void loadBitmapData(const char* fname, int z_index);
 	void loadBitmapData(BitMap& image, int z_index);
 	void transform(glm::mat4x4 transformation);
+	void setCameraTransform(glm::mat4x4 transformation);
 	void render(int resx, int resy, glm::mat4x4 projection, GLuint& tex);
 	~VoxelWorld();
 
 private:
 	unsigned char* renderbuffer;
 	glm::mat4x4 globaltransform;
+	glm::mat4x4 cameratransform;
 	unsigned char* data;
 	int maxx;
 	int maxy;

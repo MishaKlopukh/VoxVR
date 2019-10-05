@@ -1,5 +1,7 @@
 #include "Application.h"
 
+char const* lFilterPatterns[2] = { "*.bmp", "*.BMP" };
+
 void VoxVRApplication::init() {
 	if (!glfwInit()) {
 		throw std::runtime_error("Failed to initialize GLFW!");
@@ -14,6 +16,8 @@ void VoxVRApplication::init() {
 		glfwTerminate();
 		throw std::runtime_error("Window Creation Failed!");
 	}
+
+	worldInit();
 
 	should_close = false;
 	is_gripping_left = false;
@@ -32,6 +36,8 @@ void VoxVRApplication::initVR() {
 	if (!vr::VRCompositor()) {
 		throw std::runtime_error("VR Compositor Initialization Failed!");
 	}
+
+	HMD->GetRecommendedRenderTargetSize(&WIDTH, &HEIGHT);
 }
 
 void VoxVRApplication::handleInputs() {
@@ -116,14 +122,62 @@ void VoxVRApplication::handleInputs() {
 }
 
 void VoxVRApplication::worldInit() {
-	char const * foldername = tinyfd_selectFolderDialog("Choose the folder", NULL);
+	char const* filename = tinyfd_openFileDialog("Choose the last file in the stack", "", 2, lFilterPatterns, NULL, 0);
+	char const* maxtxt = tinyfd_inputBox("Input the number of images",
+		"Type the number f total images in the stack. this should be the number of the image you selected.", "");
+	int max_idx = atoi(maxtxt);
+	char* filetemplate = (char*)malloc(sizeof(filename)+1);
+	int filetemplatelen = strlen(filename) - strlen(maxtxt) - 4;
+	strncpy(filetemplate, filename, filetemplatelen);
+	BitMap frame = BitMap(filename);
+	world = new VoxelWorld(frame.bmp_info_header.width, frame.bmp_info_header.height, max_idx);
+	world->loadBitmapData(frame, max_idx - 1);
+	int zsize;
+	for (int z = 1; z < max_idx; z++) {
+		if (z > 1000) {
+			zsize = 4;
+		} else if (z > 100) {
+			zsize = 3;
+		} else if (z > 10) {
+			zsize = 2;
+		} else {
+			zsize = 1;
+		}
+		itoa(z, filetemplate+filetemplatelen, 10);
+		strcpy(filetemplate + filetemplatelen + zsize, ".bmp\0");
+		world->loadBitmapData(filetemplate, z - 1);
+	}
+	projectionmatrix_left = toGlmMat(HMD->GetProjectionMatrix(vr::Eye_Left, 0.1, 100));
+	projectionmatrix_right = toGlmMat(HMD->GetProjectionMatrix(vr::Eye_Right, 0.1, 100));
 }
 
-void VoxVRApplication::update() {}
+void VoxVRApplication::update() {
+	HMD->GetDeviceToAbsoluteTrackingPose(vr::TrackingUniverseStanding, 0.0f, &HMPose, 1);
+	switch (HMPose.eTrackingResult) {
+	case vr::TrackingResult_Running_OK:
+		world->setCameraTransform(toGlmMat(HMPose.mDeviceToAbsoluteTracking));
+		break;
+	default:
+		break;
+	}
+}
 
-void VoxVRApplication::render() {}
+void VoxVRApplication::render() {
+	GLuint leftTex;
+	glGenTextures(1, &leftTex);
+	world->render(WIDTH, HEIGHT, projectionmatrix_left, leftTex);
+	vr::Texture_t leftEyeTexture = { (void*)leftTex, vr::TextureType_OpenGL, vr::ColorSpace_Linear };
+	vr::VRCompositor()->Submit(vr::Eye_Left, &leftEyeTexture);
+	GLuint rightTex;
+	glGenTextures(1, &rightTex);
+	world->render(WIDTH, HEIGHT, projectionmatrix_right, rightTex);
+	vr::Texture_t rightEyeTexture = { (void*)rightTex, vr::TextureType_OpenGL, vr::ColorSpace_Linear };
+	vr::VRCompositor()->Submit(vr::Eye_Right, &rightEyeTexture);
+}
 
 void VoxVRApplication::cleanup() {
+	free(world);
+
 	if (HMD) {
 		vr::VR_Shutdown();
 		HMD = NULL;

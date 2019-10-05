@@ -6,6 +6,7 @@
 
 #include <GLFW/glfw3.h>
 #include <GL/gl.h>
+#include <glm/glm.hpp>
 #include <cstdlib>
 #include <iostream>
 #include <openvr.h>
@@ -13,9 +14,6 @@
 #include "tinyfiledialogs.h"
 #include "BitMap.h"
 #include "VoxelWorld.h"
-
-const int WIDTH = 800;
-const int HEIGHT = 600;
 
 class VoxVRApplication {
 public:
@@ -42,8 +40,16 @@ private:
 	GLFWwindow* window;
 	vr::IVRSystem* HMD;
 
-	VoxelWorld world;
+	vr::TrackedDevicePose_t HMPose;
+
+	VoxelWorld* world;
+
+	glm::mat4x4 projectionmatrix_left;
+	glm::mat4x4 projectionmatrix_right;
 
 	bool is_gripping_left;
 	bool is_gripping_right;
+
+	uint32_t HEIGHT;
+	uint32_t WIDTH;
 };
