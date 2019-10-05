@@ -86,3 +86,8 @@
 1	156	591939778	build.ninja	54d9611527fc9aa3
 1	597	591939779	CMakeFiles/BitMap.dir/src/BitMap.cpp.obj	786da1c9c3012eba
 1	22	591939830	BitMap.lib	5344eda6919eebda
+1	160	591940678	build.ninja	54d9611527fc9aa3
+1	165	591940761	build.ninja	54d9611527fc9aa3
+4	572	591941102	CMakeFiles/VoxVR.dir/src/main.cpp.obj	6b06b128f79bd86d
+1	581	591941102	CMakeFiles/VoxVR.dir/src/Application.cpp.obj	7a47e7dde2bc1db3
+1	208	591949835	build.ninja	54d9611527fc9aa3

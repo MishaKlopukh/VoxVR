@@ -56,11 +56,11 @@ public:
 	BMPColorHeader bmp_color_header;
 	std::vector<uint8_t> data;
 
-	BitMap(char* fname) { read(fname); }
+	BitMap(const char* fname) { read(fname); }
 	BitMap(int32_t width, int32_t height, bool has_alpha = true);
 
-	void read(char* fname);
-	void write(char* fname);
+	void read(const char* fname);
+	void write(const char* fname);
 
 	Pixel getPixel(int x, int y) { Pixel pixel; getPixel(x, y, pixel); return pixel; }
 	void getPixel(int x, int y, Pixel& pixel);

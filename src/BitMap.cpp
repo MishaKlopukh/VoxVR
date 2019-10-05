@@ -1,6 +1,6 @@
 #include "BitMap.h"
 
-void BitMap::read(char* fname) {
+void BitMap::read(const char* fname) {
 
 	std::ifstream inp{ fname, std::ios_base::binary };
 
@@ -192,7 +192,7 @@ BitMap::BitMap(int32_t width, int32_t height, bool has_alpha) {
 
 
 
-void BitMap::write(char* fname) {
+void BitMap::write(const char* fname) {
 
 	std::ofstream of{ fname, std::ios_base::binary };
 

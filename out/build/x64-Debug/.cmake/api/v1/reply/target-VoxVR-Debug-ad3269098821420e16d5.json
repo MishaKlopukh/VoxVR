@@ -93,15 +93,15 @@
 		},
 		{
 			"backtrace" : 2,
-			"id" : "VoxelWorld::@6890427a1f51a3e7e1df"
-		},
-		{
-			"backtrace" : 2,
 			"id" : "tinyfiledialogs::@6890427a1f51a3e7e1df"
 		},
 		{
 			"backtrace" : 2,
 			"id" : "BitMap::@6890427a1f51a3e7e1df"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "VoxelWorld::@6890427a1f51a3e7e1df"
 		},
 		{
 			"backtrace" : 2,

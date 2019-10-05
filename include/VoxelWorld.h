@@ -1,5 +1,9 @@
 #pragma once
 
+#ifdef _WIN32
+#include <windows.h>
+#endif
+
 #include <GL/gl.h>
 #include <glm/glm.hpp>
 #include <cstdlib>
@@ -9,15 +13,17 @@
 class VoxelWorld {
 public:
 	VoxelWorld(int x, int y, int z);
-	void loadBitmapData(char* fname, int z_index);
+	void loadBitmapData(const char* fname, int z_index);
 	void loadBitmapData(BitMap& image, int z_index);
 	void transform(glm::mat4x4 transformation);
-	void render(glm::mat4x4 projection, GLuint& tex);
+	void render(int resx, int resy, glm::mat4x4 projection, GLuint& tex);
 	~VoxelWorld();
 
 private:
-	GLuint worlddata;
+	unsigned char* renderbuffer;
 	glm::mat4x4 globaltransform;
-	char* data;
-	glm::vec3* positions;
+	unsigned char* data;
+	int maxx;
+	int maxy;
+	int maxz;
 };

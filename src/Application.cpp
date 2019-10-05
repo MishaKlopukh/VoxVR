@@ -115,6 +115,10 @@ void VoxVRApplication::handleInputs() {
 	}
 }
 
+void VoxVRApplication::worldInit() {
+	char const * foldername = tinyfd_selectFolderDialog("Choose the folder", NULL);
+}
+
 void VoxVRApplication::update() {}
 
 void VoxVRApplication::render() {}
