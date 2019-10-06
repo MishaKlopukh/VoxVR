@@ -41,3 +41,14 @@
 618	663	591964929	BitMap.lib	5344eda6919eebda
 1	1093	591994276	CMakeFiles/VoxVR.dir/src/Application.cpp.obj	7a47e7dde2bc1db3
 1093	1253	591994276	VoxVR.exe	6d18dee0b57a25d4
+6	981	592016083	CMakeFiles/VoxelWorld.dir/src/VoxelWorld.cpp.obj	56bbe8089384be90
+2	1000	592016083	CMakeFiles/VoxVR.dir/src/main.cpp.obj	6b06b128f79bd86d
+4	1015	592016083	CMakeFiles/VoxVR.dir/src/Application.cpp.obj	7a47e7dde2bc1db3
+982	1018	592016083	VoxelWorld.lib	6dd594916d0a354f
+1019	1218	592016083	VoxVR.exe	6d18dee0b57a25d4
+1	703	592016376	CMakeFiles/VoxelWorld.dir/src/VoxelWorld.cpp.obj	56bbe8089384be90
+704	722	592016376	VoxelWorld.lib	6dd594916d0a354f
+722	876	592016376	VoxVR.exe	6d18dee0b57a25d4
+1	696	592016744	CMakeFiles/VoxelWorld.dir/src/VoxelWorld.cpp.obj	56bbe8089384be90
+697	716	592016744	VoxelWorld.lib	6dd594916d0a354f
+716	863	592016744	VoxVR.exe	6d18dee0b57a25d4

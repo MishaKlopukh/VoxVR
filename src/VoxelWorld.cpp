@@ -5,7 +5,12 @@ VoxelWorld::VoxelWorld(int x, int y, int z) {
 	maxx = x;
 	maxy = y;
 	maxz = z;
+	resx = 1024;
+	resy = 1024;
 	globaltransform = glm::mat4x4(1.0f);
+	cameratransform = glm::mat4x4(1.0f);
+	projection = glm::mat4x4(1.0f);
+	renderbuffer = nullptr;
 }
 
 void VoxelWorld::loadBitmapData(BitMap& image, int z_index) {
@@ -28,7 +33,25 @@ void VoxelWorld::loadBitmapData(const char* fname, int z_index) {
 	loadBitmapData(BitMap(fname), z_index);
 }
 
-void VoxelWorld::render(int resx, int resy, glm::mat4x4 projection, GLuint& tex) {
+void VoxelWorld::writeBitmapBuffer(BitMap& image) {
+	for (int i = 0; i < sizeof(renderbuffer) / sizeof(unsigned char*); i++) {
+		image.data[i] = renderbuffer[i];
+	}
+}
+
+void VoxelWorld::writeBitmapBuffer(const char* fname) {
+	BitMap bmp = BitMap(resx, resy, false);
+	writeBitmapBuffer(bmp);
+	bmp.write(fname);
+}
+
+void VoxelWorld::render(int xres, int yres, glm::mat4x4 projectionmatrix) {
+	resx = xres;
+	resy = yres;
+	projection = projectionmatrix;
+	render();
+}
+void VoxelWorld::render() {
 	renderbuffer = (unsigned char*)malloc(sizeof(unsigned char) * resx * resy * 3);
 	glm::vec4 point;
 	unsigned char dv;
@@ -37,6 +60,7 @@ void VoxelWorld::render(int resx, int resy, glm::mat4x4 projection, GLuint& tex)
 	int px;
 	int py;
 	for (int x = 0; x < maxx; x++) {
+		std::cout << "rendering line " << x << std::endl;
 		for (int y = 0; y < maxy; y++) {
 			for (int z = maxz-1; z >= 0; z--) {
 				point = glm::vec4(x, y, z, 1.0f);
@@ -59,10 +83,6 @@ void VoxelWorld::render(int resx, int resy, glm::mat4x4 projection, GLuint& tex)
 			}
 		}
 	}
-	glBindTexture(GL_TEXTURE_2D, tex);
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, resx, resy, 0, GL_RGB, GL_UNSIGNED_BYTE, renderbuffer);
-	//glGenerateMipmap(GL_TEXTURE_2D);
-	free(renderbuffer);
 }
 
 VoxelWorld::~VoxelWorld() {

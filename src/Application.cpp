@@ -163,16 +163,24 @@ void VoxVRApplication::update() {
 }
 
 void VoxVRApplication::render() {
-	GLuint leftTex;
+
+	// Test
+	world->render(WIDTH, HEIGHT, projectionmatrix_left);
+	const char* filename = tinyfd_saveFileDialog("Save Render", "test.bmp", 2, lFilterPatterns, NULL);
+	world->writeBitmapBuffer(filename);
+	should_close = true;
+	//End Test
+
+	/*GLuint leftTex;
 	glGenTextures(1, &leftTex);
-	world->render(WIDTH, HEIGHT, projectionmatrix_left, leftTex);
+	world->render(WIDTH, HEIGHT, projectionmatrix_left);
 	vr::Texture_t leftEyeTexture = { (void*)leftTex, vr::TextureType_OpenGL, vr::ColorSpace_Linear };
 	vr::VRCompositor()->Submit(vr::Eye_Left, &leftEyeTexture);
 	GLuint rightTex;
 	glGenTextures(1, &rightTex);
-	world->render(WIDTH, HEIGHT, projectionmatrix_right, rightTex);
+	world->render(WIDTH, HEIGHT, projectionmatrix_right);
 	vr::Texture_t rightEyeTexture = { (void*)rightTex, vr::TextureType_OpenGL, vr::ColorSpace_Linear };
-	vr::VRCompositor()->Submit(vr::Eye_Right, &rightEyeTexture);
+	vr::VRCompositor()->Submit(vr::Eye_Right, &rightEyeTexture);*/
 }
 
 void VoxVRApplication::cleanup() {

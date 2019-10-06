@@ -17,7 +17,10 @@ public:
 	void loadBitmapData(BitMap& image, int z_index);
 	void transform(glm::mat4x4 transformation);
 	void setCameraTransform(glm::mat4x4 transformation);
-	void render(int resx, int resy, glm::mat4x4 projection, GLuint& tex);
+	void render(int xres, int yres, glm::mat4x4 projectionmatrix);
+	void render();
+	void writeBitmapBuffer(const char* fname);
+	void writeBitmapBuffer(BitMap& image);
 	~VoxelWorld();
 
 private:
@@ -28,4 +31,7 @@ private:
 	int maxx;
 	int maxy;
 	int maxz;
+	int resx;
+	int resy;
+	glm::mat4x4 projection;
 };
