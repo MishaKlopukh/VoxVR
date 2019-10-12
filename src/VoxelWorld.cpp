@@ -1,91 +1,132 @@
 #include "VoxelWorld.h"
 
-VoxelWorld::VoxelWorld(int x, int y, int z) {
-	data = (unsigned char*)malloc(sizeof(unsigned char) * x * y * z);
+VoxelWorld::VoxelWorld(std::vector<const char*> files) {
+	BitMap bmp = BitMap(files[0]);
+	int x = bmp.bmp_info_header.width;
+	int y = bmp.bmp_info_header.height;
+	int z = files.size();
+	GLubyte* pData = new GLubyte[x * y * z];
+	for (int xx = 0; xx < x; xx++) {
+		for (int yy = 0; yy < y; yy++) {
+			pData[yy * x + xx] = bmp.getPixel(xx, yy).r;
+		}
+	}
+	for (int ii = 1; ii < z; ii++) {
+		BitMap bmp = BitMap(files[ii]);
+		for (int xx = 0; xx < x; xx++) {
+			for (int yy = 0; yy < y; yy++) {
+				pData[(ii * y + yy) * x + xx] = bmp.getPixel(xx, yy).r;
+			}
+		}
+	}
 	maxx = x;
 	maxy = y;
 	maxz = z;
 	resx = 1024;
 	resy = 1024;
-	globaltransform = glm::mat4x4(1.0f);
-	cameratransform = glm::mat4x4(1.0f);
-	projection = glm::mat4x4(1.0f);
-	renderbuffer = nullptr;
-}
 
-void VoxelWorld::loadBitmapData(BitMap& image, int z_index) {
-	for (int x = 0; x < maxx; x++) {
-		for (int y = 0; y < maxy; y++) {
-			data[(z_index * maxy + y) * maxx + x] = image.getPixel(x, y).r;
-		}
-	}
+	modelTransform = glm::mat4(1.0f);
+
+	glGenTextures(1, &textureID);
+	glBindTexture(GL_TEXTURE_3D, textureID);
+
+	glTexParameteri(GL_TEXTURE_3D, GL_TEXTURE_WRAP_S, GL_CLAMP);
+	glTexParameteri(GL_TEXTURE_3D, GL_TEXTURE_WRAP_T, GL_CLAMP);
+	glTexParameteri(GL_TEXTURE_3D, GL_TEXTURE_WRAP_R, GL_CLAMP);
+	glTexParameteri(GL_TEXTURE_3D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_3D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+
+	glTexParameteri(GL_TEXTURE_3D, GL_TEXTURE_BASE_LEVEL, 0);
+	glTexParameteri(GL_TEXTURE_3D, GL_TEXTURE_MAX_LEVEL, 4);
+
+	glTexImage3D(GL_TEXTURE_3D, 0, GL_RED, maxx, maxy, maxz, 0, GL_RED, GL_UNSIGNED_BYTE, pData);
+
+	glGenerateMipmap(GL_TEXTURE_3D);
+
+	delete[] pData;
+
+	shader.LoadFromFile(GL_VERTEX_SHADER, "shaders/raycaster.vert");
+	shader.LoadFromFile(GL_FRAGMENT_SHADER, "shaders/raycaster.frag");
+
+	shader.CreateAndLinkProgram();
+	shader.Use();
+	shader.AddAttribute("vVertex");
+	shader.AddUniform("MVP");
+	shader.AddUniform("volume");
+	shader.AddUniform("camPos");
+	shader.AddUniform("step_size");
+	glUniform3f(shader("step_size"), 1.0f / x, 1.0f / y, 1.0f / z);
+	glUniform1i(shader("volume"), 0);
+	shader.UnUse();
+
+	glClearColor(bg.r, bg.g, bg.b, bg.a);
+
+	glGenVertexArrays(1, &cubeVAOID);
+	glGenBuffers(1, &cubeVBOID);
+	glGenBuffers(1, &cubeIndicesID);
+
+	glm::vec3 vertices[8] = { 
+		glm::vec3(-0.5f,-0.5f,-0.5f),
+		glm::vec3(0.5f,-0.5f,-0.5f),
+		glm::vec3(0.5f, 0.5f,-0.5f),
+		glm::vec3(-0.5f, 0.5f,-0.5f),
+		glm::vec3(-0.5f,-0.5f, 0.5f),
+		glm::vec3(0.5f,-0.5f, 0.5f),
+		glm::vec3(0.5f, 0.5f, 0.5f),
+		glm::vec3(-0.5f, 0.5f, 0.5f) 
+	};
+
+	GLushort cubeIndices[36] = { 
+		0,5,4,
+		5,0,1,
+		3,7,6,
+		3,6,2,
+		7,4,6,
+		6,4,5,
+		2,1,3,
+		3,1,0,
+		3,0,7,
+		7,0,4,
+		6,5,2,
+		2,5,1 
+	};
+
+	glBindVertexArray(cubeVAOID);
+	glBindBuffer(GL_ARRAY_BUFFER, cubeVBOID);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), &(vertices[0].x), GL_STATIC_DRAW);
+	glEnableVertexAttribArray(0);
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, cubeIndicesID);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(cubeIndices), &cubeIndices[0], GL_STATIC_DRAW);
+	glBindVertexArray(0);
+
+	glEnable(GL_DEPTH_TEST);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 }
 
 void VoxelWorld::transform(glm::mat4x4 transformation) {
-	globaltransform = globaltransform * transformation;
+	modelTransform = modelTransform * transformation;
 }
 
-void VoxelWorld::setCameraTransform(glm::mat4x4 transformation) {
-	cameratransform = transformation;
-}
-
-void VoxelWorld::loadBitmapData(const char* fname, int z_index) {
-	loadBitmapData(BitMap(fname), z_index);
-}
-
-void VoxelWorld::writeBitmapBuffer(BitMap& image) {
-	for (int i = 0; i < sizeof(renderbuffer) / sizeof(unsigned char*); i++) {
-		image.data[i] = renderbuffer[i];
-	}
-}
-
-void VoxelWorld::writeBitmapBuffer(const char* fname) {
-	BitMap bmp = BitMap(resx, resy, false);
-	writeBitmapBuffer(bmp);
-	bmp.write(fname);
-}
-
-void VoxelWorld::render(int xres, int yres, glm::mat4x4 projectionmatrix) {
+void VoxelWorld::setResolution(int xres, int yres) {
 	resx = xres;
 	resy = yres;
-	projection = projectionmatrix;
-	render();
 }
-void VoxelWorld::render() {
-	renderbuffer = (unsigned char*)malloc(sizeof(unsigned char) * resx * resy * 3);
-	glm::vec4 point;
-	unsigned char dv;
-	unsigned char dx;
-	unsigned char nv;
-	int px;
-	int py;
-	for (int x = 0; x < maxx; x++) {
-		std::cout << "rendering line " << x << std::endl;
-		for (int y = 0; y < maxy; y++) {
-			for (int z = maxz-1; z >= 0; z--) {
-				point = glm::vec4(x, y, z, 1.0f);
-				point = projection * cameratransform * globaltransform * point;
-				point /= point.w;
-				if (point.z >= 0 && point.z <= 1 && point.x <= 1 && point.x >= 0 && point.y <= 1 && point.y >= 0) {
-					px = floor(point.x * resx);
-					py = floor(point.y * resy);
-					dv = data[(z * maxy + y) * maxx + x];
-					if (z < maxz - 1) {
-						dx = renderbuffer[((py * resx) + px) * 3];
-					} else {
-						dx = 0;
-					}
-					nv = dv + dx / dv;
-					renderbuffer[((py * resx) + px) * 3] = nv;
-					renderbuffer[((py * resx) + px) * 3 + 1] = nv;
-					renderbuffer[((py * resx) + px) * 3 + 2] = nv;
-				}
-			}
-		}
-	}
+
+void VoxelWorld::render(glm::mat4 modelView, glm::mat4 projection) {
+	glm::vec3 camPos = glm::vec3(glm::inverse(modelView * modelTransform) * glm::vec4(0, 0, 0, 1));
+	glm::mat4 MVP = projection * modelView * modelTransform;
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	glEnable(GL_BLEND);
+	glBindVertexArray(cubeVAOID);
+	shader.Use();
+	glUniformMatrix4fv(shader("MVP"), 1, GL_FALSE, glm::value_ptr(MVP));
+	glUniform3fv(shader("camPos"), 1, &(camPos.x));
+	glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_SHORT, 0);
+	shader.UnUse();
+	glDisable(GL_BLEND);
 }
 
 VoxelWorld::~VoxelWorld() {
-	free(data);
-	free(renderbuffer);
+	glDeleteTextures(1, &textureID);
 }

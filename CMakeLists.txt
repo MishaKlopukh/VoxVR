@@ -24,6 +24,8 @@ add_library(VoxelWorld STATIC ${PROJECT_SOURCE_DIR}/src/VoxelWorld.cpp)
 
 add_library(vrutil STATIC ${PROJECT_SOURCE_DIR}/src/vrutil.cpp)
 
+add_library(GLSLShader STATIC ${PROJECT_SOURCE_DIR}/src/GLSLShader.cpp)
+
 add_library(tinyfiledialogs STATIC ${PROJECT_SOURCE_DIR}/src/tinyfiledialogs.c)
 
 add_executable (VoxVR ${PROJECT_SOURCE_DIR}/src/main.cpp ${PROJECT_SOURCE_DIR}/src/Application.cpp)
@@ -31,15 +33,23 @@ add_executable (VoxVR ${PROJECT_SOURCE_DIR}/src/main.cpp ${PROJECT_SOURCE_DIR}/s
 set(OPENVR_ROOT_DIR ${PROJECT_SOURCE_DIR}/openvr-1.7.15)
 
 find_package(OpenGL REQUIRED)
+find_package(GLEW REQUIRED)
+find_package(GLUT REQUIRED)
 find_package(OpenVR REQUIRED)
 
-target_include_directories(VoxVR PUBLIC ${OPENGL_INCLUDE_DIRS} ${OPENVR_INCLUDE_DIRS})
-target_include_directories(vrutil PUBLIC ${OPENGL_INCLUDE_DIRS} ${OPENVR_INCLUDE_DIRS})
-target_include_directories(VoxelWorld PUBLIC ${OPENGL_INCLUDE_DIRS} ${OPENVR_INCLUDE_DIRS})
-target_include_directories(BitMap PUBLIC ${OPENGL_INCLUDE_DIRS})
-target_link_libraries(VoxVR VoxelWorld BitMap vrutil tinyfiledialogs glfw ${OPENGL_LIBRARIES} ${OPENVR_LIBRARY})
+target_include_directories(VoxVR PUBLIC ${OPENGL_INCLUDE_DIRS} ${OPENVR_INCLUDE_DIRS} ${GLEW_INCLUDE_DIRS} ${GLUT_INCLUDE_DIRS})
+target_include_directories(vrutil PUBLIC ${OPENGL_INCLUDE_DIRS} ${OPENVR_INCLUDE_DIRS} ${GLEW_INCLUDE_DIRS} ${GLUT_INCLUDE_DIRS})
+target_include_directories(VoxelWorld PUBLIC ${OPENGL_INCLUDE_DIRS} ${OPENVR_INCLUDE_DIRS} ${GLEW_INCLUDE_DIRS} ${GLUT_INCLUDE_DIRS})
+target_include_directories(GLSLShader PUBLIC ${OPENGL_INCLUDE_DIRS} ${GLEW_INCLUDE_DIRS} ${GLUT_INCLUDE_DIRS})
+target_include_directories(BitMap PUBLIC ${OPENGL_INCLUDE_DIRS} ${GLEW_INCLUDE_DIRS} ${GLUT_INCLUDE_DIRS})
+target_link_libraries(VoxVR VoxelWorld BitMap GLSLShader vrutil tinyfiledialogs glfw ${OPENGL_LIBRARIES} ${OPENVR_LIBRARY} ${GLEW_LIBRARIES} ${GLUT_LIBRARIES})
 
 add_custom_command(TARGET VoxVR POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E copy_directory
         "${OPENVR_ROOT_DIR}/bin/${OPENVR_PLATFORM}"
         ${CMAKE_BINARY_DIR})
+
+add_custom_command(TARGET VoxVR POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_directory
+        "${PROJECT_SOURCE_DIR}/shaders"
+        ${CMAKE_BINARY_DIR}/shaders)

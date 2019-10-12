@@ -2,42 +2,6 @@
 	"entries" : 
 	[
 		{
-			"name" : "BUILD_FRAMEWORK",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : "Builds the library as an apple Framework"
-				}
-			],
-			"type" : "BOOL",
-			"value" : "OFF"
-		},
-		{
-			"name" : "BUILD_OSX_I386",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : "Builds the shared or framework as a 32-bit binary, even on a 64-bit platform"
-				}
-			],
-			"type" : "BOOL",
-			"value" : "OFF"
-		},
-		{
-			"name" : "BUILD_SHARED",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : "Builds the library as shared library"
-				}
-			],
-			"type" : "BOOL",
-			"value" : "OFF"
-		},
-		{
 			"name" : "BUILD_SHARED_LIBS",
 			"properties" : 
 			[
@@ -48,18 +12,6 @@
 			],
 			"type" : "BOOL",
 			"value" : "OFF"
-		},
-		{
-			"name" : "BUILD_UNIVERSAL",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : "Builds the shared or framework as a universal (fat, 32- & 64-bit) binary"
-				}
-			],
-			"type" : "BOOL",
-			"value" : "ON"
 		},
 		{
 			"name" : "CMAKE_BUILD_TYPE",
@@ -867,7 +819,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "C:/PROGRA~2/MICROS~1/2019/COMMUN~1/Common7/IDE/COMMON~1/MICROS~1/CMake/Ninja/ninja.exe"
+			"value" : "C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe"
 		},
 		{
 			"name" : "CMAKE_MODULE_LINKER_FLAGS",
@@ -1338,6 +1290,22 @@
 			"value" : ""
 		},
 		{
+			"name" : "CMAKE_TOOLCHAIN_FILE",
+			"properties" : 
+			[
+				{
+					"name" : "ADVANCED",
+					"value" : "1"
+				},
+				{
+					"name" : "HELPSTRING",
+					"value" : "No help, variable specified on the command line."
+				}
+			],
+			"type" : "UNINITIALIZED",
+			"value" : "C:/Users/Boris/vcpkg/scripts/buildsystems/vcpkg.cmake"
+		},
+		{
 			"name" : "CMAKE_VERBOSE_MAKEFILE",
 			"properties" : 
 			[
@@ -1352,6 +1320,18 @@
 			],
 			"type" : "BOOL",
 			"value" : "FALSE"
+		},
+		{
+			"name" : "FIND_PACKAGE_MESSAGE_DETAILS_GLUT",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Details about finding GLUT"
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "[optimized;C:/Users/Boris/vcpkg/installed/x64-windows/lib/freeglut.lib;debug;C:/Users/Boris/vcpkg/installed/x64-windows/debug/lib/freeglutd.lib][C:/Users/Boris/vcpkg/installed/x64-windows/include][v()]"
 		},
 		{
 			"name" : "FIND_PACKAGE_MESSAGE_DETAILS_OpenGL",
@@ -1390,19 +1370,47 @@
 			"value" : "[TRUE][v()]"
 		},
 		{
+			"name" : "FreeGLUT_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "The directory containing a CMake configuration file for FreeGLUT."
+				}
+			],
+			"type" : "PATH",
+			"value" : "FreeGLUT_DIR-NOTFOUND"
+		},
+		{
 			"name" : "GLEW_DIR",
 			"properties" : 
 			[
 				{
 					"name" : "HELPSTRING",
-					"value" : "No help, variable specified on the command line."
+					"value" : "The directory containing a CMake configuration file for GLEW."
 				}
 			],
 			"type" : "PATH",
+			"value" : "C:/Users/Boris/vcpkg/installed/x64-windows/share/glew"
+		},
+		{
+			"name" : "GLEW_LIBRARY_DEBUG",
+			"properties" : 
+			[
+				{
+					"name" : "ADVANCED",
+					"value" : "1"
+				},
+				{
+					"name" : "HELPSTRING",
+					"value" : "(This variable does not exist and should not be used)"
+				}
+			],
+			"type" : "UNINITIALIZED",
 			"value" : ""
 		},
 		{
-			"name" : "GLEW_INCLUDE_DIR",
+			"name" : "GLEW_LIBRARY_RELEASE",
 			"properties" : 
 			[
 				{
@@ -1411,75 +1419,11 @@
 				},
 				{
 					"name" : "HELPSTRING",
-					"value" : "Path to a file."
+					"value" : "(This variable does not exist and should not be used)"
 				}
 			],
-			"type" : "PATH",
-			"value" : "GLEW_INCLUDE_DIR-NOTFOUND"
-		},
-		{
-			"name" : "GLEW_SHARED_LIBRARY_DEBUG",
-			"properties" : 
-			[
-				{
-					"name" : "ADVANCED",
-					"value" : "1"
-				},
-				{
-					"name" : "HELPSTRING",
-					"value" : "Path to a library."
-				}
-			],
-			"type" : "FILEPATH",
-			"value" : "GLEW_SHARED_LIBRARY_DEBUG-NOTFOUND"
-		},
-		{
-			"name" : "GLEW_SHARED_LIBRARY_RELEASE",
-			"properties" : 
-			[
-				{
-					"name" : "ADVANCED",
-					"value" : "1"
-				},
-				{
-					"name" : "HELPSTRING",
-					"value" : "Path to a library."
-				}
-			],
-			"type" : "FILEPATH",
-			"value" : "GLEW_SHARED_LIBRARY_RELEASE-NOTFOUND"
-		},
-		{
-			"name" : "GLEW_STATIC_LIBRARY_DEBUG",
-			"properties" : 
-			[
-				{
-					"name" : "ADVANCED",
-					"value" : "1"
-				},
-				{
-					"name" : "HELPSTRING",
-					"value" : "Path to a library."
-				}
-			],
-			"type" : "FILEPATH",
-			"value" : "GLEW_STATIC_LIBRARY_DEBUG-NOTFOUND"
-		},
-		{
-			"name" : "GLEW_STATIC_LIBRARY_RELEASE",
-			"properties" : 
-			[
-				{
-					"name" : "ADVANCED",
-					"value" : "1"
-				},
-				{
-					"name" : "HELPSTRING",
-					"value" : "Path to a library."
-				}
-			],
-			"type" : "FILEPATH",
-			"value" : "GLEW_STATIC_LIBRARY_RELEASE-NOTFOUND"
+			"type" : "UNINITIALIZED",
+			"value" : ""
 		},
 		{
 			"name" : "GLFW_BINARY_DIR",
@@ -1582,12 +1526,16 @@
 			"properties" : 
 			[
 				{
+					"name" : "ADVANCED",
+					"value" : "1"
+				},
+				{
 					"name" : "HELPSTRING",
 					"value" : "Path to a file."
 				}
 			],
 			"type" : "PATH",
-			"value" : "GLUT_INCLUDE_DIR-NOTFOUND"
+			"value" : "C:/Users/Boris/vcpkg/installed/x64-windows/include"
 		},
 		{
 			"name" : "GLUT_glut_LIBRARY_DEBUG",
@@ -1603,7 +1551,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "GLUT_glut_LIBRARY_DEBUG-NOTFOUND"
+			"value" : "C:/Users/Boris/vcpkg/installed/x64-windows/debug/lib/freeglutd.lib"
 		},
 		{
 			"name" : "GLUT_glut_LIBRARY_RELEASE",
@@ -1619,7 +1567,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "GLUT_glut_LIBRARY_RELEASE-NOTFOUND"
+			"value" : "C:/Users/Boris/vcpkg/installed/x64-windows/lib/freeglut.lib"
 		},
 		{
 			"name" : "OPENGL_EGL_INCLUDE_DIR",
@@ -1834,114 +1782,6 @@
 			"value" : "C:/Users/Boris/source/repos/VoxVR/openvr-1.7.15"
 		},
 		{
-			"name" : "OpenVRSDK_BINARY_DIR",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : "Value Computed by CMake"
-				}
-			],
-			"type" : "STATIC",
-			"value" : "C:/Users/Boris/source/repos/VoxVR/out/build/x64-Debug/openvr-1.7.15"
-		},
-		{
-			"name" : "OpenVRSDK_SOURCE_DIR",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : "Value Computed by CMake"
-				}
-			],
-			"type" : "STATIC",
-			"value" : "C:/Users/Boris/source/repos/VoxVR/openvr-1.7.15"
-		},
-		{
-			"name" : "OpenVR_DIR",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : "The directory containing a CMake configuration file for OpenVR."
-				}
-			],
-			"type" : "PATH",
-			"value" : "OpenVR_DIR-NOTFOUND"
-		},
-		{
-			"name" : "SDL2_DIR",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : "The directory containing a CMake configuration file for SDL2."
-				}
-			],
-			"type" : "PATH",
-			"value" : "SDL2_DIR-NOTFOUND"
-		},
-		{
-			"name" : "SDLMAIN_LIBRARY",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : "Path to a library."
-				}
-			],
-			"type" : "FILEPATH",
-			"value" : "SDLMAIN_LIBRARY-NOTFOUND"
-		},
-		{
-			"name" : "SDL_INCLUDE_DIR",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : "Path to a file."
-				}
-			],
-			"type" : "PATH",
-			"value" : "SDL_INCLUDE_DIR-NOTFOUND"
-		},
-		{
-			"name" : "SDL_LIBRARY_TEMP",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : "Path to a library."
-				}
-			],
-			"type" : "INTERNAL",
-			"value" : "SDL_LIBRARY_TEMP-NOTFOUND"
-		},
-		{
-			"name" : "USE_CUSTOM_LIBCXX",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : "Uses a custom libc++"
-				}
-			],
-			"type" : "BOOL",
-			"value" : "OFF"
-		},
-		{
-			"name" : "USE_LIBCXX",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : "Uses libc++ instead of libstdc++"
-				}
-			],
-			"type" : "BOOL",
-			"value" : "ON"
-		},
-		{
 			"name" : "USE_MSVC_RUNTIME_LIBRARY_DLL",
 			"properties" : 
 			[
@@ -1952,6 +1792,30 @@
 			],
 			"type" : "BOOL",
 			"value" : "ON"
+		},
+		{
+			"name" : "VCPKG_APPLOCAL_DEPS",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Automatically copy dependencies into the output directory for executables."
+				}
+			],
+			"type" : "BOOL",
+			"value" : "ON"
+		},
+		{
+			"name" : "VCPKG_TARGET_TRIPLET",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Vcpkg target triplet (ex. x86-windows)"
+				}
+			],
+			"type" : "STRING",
+			"value" : "x64-windows"
 		},
 		{
 			"name" : "VoxVR_BINARY_DIR",
@@ -1990,52 +1854,28 @@
 			"value" : "C:/Users/Boris/source/repos/VoxVR/out/install/x64-Debug"
 		},
 		{
-			"name" : "openvr_DIR",
+			"name" : "_VCPKG_CL",
 			"properties" : 
 			[
 				{
 					"name" : "HELPSTRING",
-					"value" : "The directory containing a CMake configuration file for openvr."
+					"value" : "Path to a program."
 				}
 			],
-			"type" : "PATH",
-			"value" : "openvr_DIR-NOTFOUND"
+			"type" : "FILEPATH",
+			"value" : "C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/VC/Tools/MSVC/14.23.28105/bin/Hostx64/x64/cl.exe"
 		},
 		{
-			"name" : "openvr_api_BINARY_DIR",
+			"name" : "_VCPKG_ROOT_DIR",
 			"properties" : 
 			[
 				{
 					"name" : "HELPSTRING",
-					"value" : "Value Computed by CMake"
+					"value" : "Vcpkg root directory"
 				}
 			],
-			"type" : "STATIC",
-			"value" : "C:/Users/Boris/source/repos/VoxVR/out/build/x64-Debug/openvr-1.7.15/src"
-		},
-		{
-			"name" : "openvr_api_DIR",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : "The directory containing a CMake configuration file for openvr_api."
-				}
-			],
-			"type" : "PATH",
-			"value" : "openvr_api_DIR-NOTFOUND"
-		},
-		{
-			"name" : "openvr_api_SOURCE_DIR",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : "Value Computed by CMake"
-				}
-			],
-			"type" : "STATIC",
-			"value" : "C:/Users/Boris/source/repos/VoxVR/openvr-1.7.15/src"
+			"type" : "INTERNAL",
+			"value" : "C:/Users/Boris/vcpkg"
 		}
 	],
 	"kind" : "cache",

@@ -22,8 +22,9 @@
 						0,
 						1,
 						2,
-						4,
-						6
+						3,
+						5,
+						7
 					]
 				},
 				{
@@ -42,7 +43,7 @@
 					"source" : "glfw-3.3",
 					"targetIndexes" : 
 					[
-						5
+						6
 					]
 				},
 				{
@@ -57,7 +58,7 @@
 					"source" : "glfw-3.3/src",
 					"targetIndexes" : 
 					[
-						3
+						4
 					]
 				}
 			],
@@ -79,8 +80,9 @@
 						0,
 						1,
 						2,
-						4,
-						6
+						3,
+						5,
+						7
 					]
 				},
 				{
@@ -93,8 +95,8 @@
 					"parentIndex" : 0,
 					"targetIndexes" : 
 					[
-						3,
-						5
+						4,
+						6
 					]
 				}
 			],
@@ -103,35 +105,42 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "BitMap::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-BitMap-Debug-fd6d07a77d5599b43e81.json",
+					"jsonFile" : "target-BitMap-Debug-73dd7c0fd98042fc17b2.json",
 					"name" : "BitMap",
 					"projectIndex" : 0
 				},
 				{
 					"directoryIndex" : 0,
+					"id" : "GLSLShader::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-GLSLShader-Debug-c60a6b8c2f1dee512981.json",
+					"name" : "GLSLShader",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
 					"id" : "VoxVR::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-VoxVR-Debug-196426af8376b2b40069.json",
+					"jsonFile" : "target-VoxVR-Debug-4621645bfc4a46aac6c9.json",
 					"name" : "VoxVR",
 					"projectIndex" : 0
 				},
 				{
 					"directoryIndex" : 0,
 					"id" : "VoxelWorld::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-VoxelWorld-Debug-eee617eaefef452960a4.json",
+					"jsonFile" : "target-VoxelWorld-Debug-69e7263e52418e49491f.json",
 					"name" : "VoxelWorld",
 					"projectIndex" : 0
 				},
 				{
 					"directoryIndex" : 2,
 					"id" : "glfw::@f43c2ab487b2427fc6ac",
-					"jsonFile" : "target-glfw-Debug-6d5945f064b3d7687638.json",
+					"jsonFile" : "target-glfw-Debug-9fe71ccf39bbb0d096f4.json",
 					"name" : "glfw",
 					"projectIndex" : 1
 				},
 				{
 					"directoryIndex" : 0,
 					"id" : "tinyfiledialogs::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-tinyfiledialogs-Debug-20e8d7debf3f4bb4192e.json",
+					"jsonFile" : "target-tinyfiledialogs-Debug-1720f0bb690ba08f0f83.json",
 					"name" : "tinyfiledialogs",
 					"projectIndex" : 0
 				},
@@ -145,7 +154,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "vrutil::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-vrutil-Debug-cf96a3dba556c1c37275.json",
+					"jsonFile" : "target-vrutil-Debug-4b8cba990395338c6a00.json",
 					"name" : "vrutil",
 					"projectIndex" : 0
 				}

@@ -17,6 +17,21 @@ void VoxVRApplication::init() {
 		throw std::runtime_error("Window Creation Failed!");
 	}
 
+	glfwMakeContextCurrent(window);
+
+	glutInitContextVersion(3, 3);
+	glutInitContextFlags(GLUT_CORE_PROFILE);
+	glewExperimental = GL_TRUE;
+
+	GLenum err = glewInit();
+
+	if (err != GLEW_OK) {
+		std::cerr << glewGetErrorString(err) << std::endl;
+		throw std::runtime_error("Glew initialization error!");
+	}
+
+	setupENV();
+
 	worldInit();
 
 	should_close = false;
@@ -38,6 +53,17 @@ void VoxVRApplication::initVR() {
 	}
 
 	HMD->GetRecommendedRenderTargetSize(&WIDTH, &HEIGHT);
+
+}
+
+void VoxVRApplication::setupENV() {
+	projectionmatrix_left = toGlmMat(HMD->GetProjectionMatrix(vr::Eye_Left, 0.1, 100));
+	projectionmatrix_right = toGlmMat(HMD->GetProjectionMatrix(vr::Eye_Right, 0.1, 100));
+	eyeposition_left = toGlmMat(HMD->GetEyeToHeadTransform(vr::Eye_Left));
+	eyeposition_right = toGlmMat(HMD->GetEyeToHeadTransform(vr::Eye_Right));
+
+	CreateFrameBuffer(WIDTH, HEIGHT, leftEyeDesc);
+	CreateFrameBuffer(WIDTH, HEIGHT, rightEyeDesc);
 }
 
 void VoxVRApplication::handleInputs() {
@@ -129,9 +155,7 @@ void VoxVRApplication::worldInit() {
 	char* filetemplate = (char*)malloc(sizeof(filename)+1);
 	int filetemplatelen = strlen(filename) - strlen(maxtxt) - 4;
 	strncpy(filetemplate, filename, filetemplatelen);
-	BitMap frame = BitMap(filename);
-	world = new VoxelWorld(frame.bmp_info_header.width, frame.bmp_info_header.height, max_idx);
-	world->loadBitmapData(frame, max_idx - 1);
+	std::vector<const char*> filenames = std::vector<const char*>();
 	int zsize;
 	for (int z = 1; z < max_idx; z++) {
 		if (z > 1000) {
@@ -145,17 +169,17 @@ void VoxVRApplication::worldInit() {
 		}
 		itoa(z, filetemplate+filetemplatelen, 10);
 		strcpy(filetemplate + filetemplatelen + zsize, ".bmp\0");
-		world->loadBitmapData(filetemplate, z - 1);
+		filenames.push_back(&*filetemplate);
 	}
-	projectionmatrix_left = toGlmMat(HMD->GetProjectionMatrix(vr::Eye_Left, 0.1, 100));
-	projectionmatrix_right = toGlmMat(HMD->GetProjectionMatrix(vr::Eye_Right, 0.1, 100));
+	filenames.push_back(&*filename);
+	world = new VoxelWorld(filenames);
 }
 
 void VoxVRApplication::update() {
-	HMD->GetDeviceToAbsoluteTrackingPose(vr::TrackingUniverseStanding, 0.0f, &HMPose, 1);
+	vr::VRCompositor()->WaitGetPoses(&HMPose, 1, NULL, 0);
 	switch (HMPose.eTrackingResult) {
 	case vr::TrackingResult_Running_OK:
-		world->setCameraTransform(toGlmMat(HMPose.mDeviceToAbsoluteTracking));
+		pose = toGlmMat(HMPose.mDeviceToAbsoluteTracking);
 		break;
 	default:
 		break;
@@ -163,28 +187,65 @@ void VoxVRApplication::update() {
 }
 
 void VoxVRApplication::render() {
+	glEnable(GL_MULTISAMPLE);
+	glBindFramebuffer(GL_FRAMEBUFFER, leftEyeDesc.m_nRenderFramebufferId);
+	glViewport(0, 0, WIDTH, HEIGHT);
+	world->render(eyeposition_left * pose, projectionmatrix_left);
+	glBindFramebuffer(GL_FRAMEBUFFER, 0);
+	glDisable(GL_MULTISAMPLE);
 
-	// Test
-	world->render(WIDTH, HEIGHT, projectionmatrix_left);
-	const char* filename = tinyfd_saveFileDialog("Save Render", "test.bmp", 2, lFilterPatterns, NULL);
-	world->writeBitmapBuffer(filename);
-	should_close = true;
-	//End Test
+	glBindFramebuffer(GL_READ_FRAMEBUFFER, leftEyeDesc.m_nRenderFramebufferId);
+	glBindFramebuffer(GL_DRAW_FRAMEBUFFER, leftEyeDesc.m_nResolveFramebufferId);
+	glBlitFramebuffer(0, 0, WIDTH, HEIGHT, 0, 0, WIDTH, HEIGHT, GL_COLOR_BUFFER_BIT, GL_LINEAR);
+	glBindFramebuffer(GL_READ_FRAMEBUFFER, 0);
+	glBindFramebuffer(GL_DRAW_FRAMEBUFFER, 0);
 
-	/*GLuint leftTex;
-	glGenTextures(1, &leftTex);
-	world->render(WIDTH, HEIGHT, projectionmatrix_left);
-	vr::Texture_t leftEyeTexture = { (void*)leftTex, vr::TextureType_OpenGL, vr::ColorSpace_Linear };
+	glEnable(GL_MULTISAMPLE);
+	glBindFramebuffer(GL_FRAMEBUFFER, rightEyeDesc.m_nRenderFramebufferId);
+	glViewport(0, 0, WIDTH, HEIGHT);
+	world->render(eyeposition_right * pose, projectionmatrix_right);
+	glBindFramebuffer(GL_FRAMEBUFFER, 0);
+	glDisable(GL_MULTISAMPLE);
+
+	glBindFramebuffer(GL_READ_FRAMEBUFFER, rightEyeDesc.m_nRenderFramebufferId);
+	glBindFramebuffer(GL_DRAW_FRAMEBUFFER, rightEyeDesc.m_nResolveFramebufferId);
+	glBlitFramebuffer(0, 0, WIDTH, HEIGHT, 0, 0, WIDTH, HEIGHT, GL_COLOR_BUFFER_BIT, GL_LINEAR);
+	glBindFramebuffer(GL_READ_FRAMEBUFFER, 0);
+	glBindFramebuffer(GL_DRAW_FRAMEBUFFER, 0);
+
+	vr::Texture_t leftEyeTexture = { (void*)(uintptr_t)leftEyeDesc.m_nResolveTextureId, vr::TextureType_OpenGL, vr::ColorSpace_Gamma };
 	vr::VRCompositor()->Submit(vr::Eye_Left, &leftEyeTexture);
-	GLuint rightTex;
-	glGenTextures(1, &rightTex);
-	world->render(WIDTH, HEIGHT, projectionmatrix_right);
-	vr::Texture_t rightEyeTexture = { (void*)rightTex, vr::TextureType_OpenGL, vr::ColorSpace_Linear };
-	vr::VRCompositor()->Submit(vr::Eye_Right, &rightEyeTexture);*/
+
+	vr::Texture_t rightEyeTexture = { (void*)(uintptr_t)rightEyeDesc.m_nResolveTextureId, vr::TextureType_OpenGL, vr::ColorSpace_Gamma };
+	vr::VRCompositor()->Submit(vr::Eye_Right, &rightEyeTexture);
+
+	glEnable(GL_MULTISAMPLE);
+	glfwMakeContextCurrent(window);
+	glViewport(0, 0, WIDTH, HEIGHT);
+	world->render(eyeposition_left * pose, projectionmatrix_left);
+	glfwSwapBuffers(window);
+	glDisable(GL_MULTISAMPLE);
+
+	glFlush();
+	glFinish();
+
+	std::cout << "rendered frame" << std::endl;
 }
 
 void VoxVRApplication::cleanup() {
-	free(world);
+	delete world;
+
+	glDeleteRenderbuffers(1, &leftEyeDesc.m_nDepthBufferId);
+	glDeleteTextures(1, &leftEyeDesc.m_nRenderTextureId);
+	glDeleteFramebuffers(1, &leftEyeDesc.m_nRenderFramebufferId);
+	glDeleteTextures(1, &leftEyeDesc.m_nResolveTextureId);
+	glDeleteFramebuffers(1, &leftEyeDesc.m_nResolveFramebufferId);
+
+	glDeleteRenderbuffers(1, &rightEyeDesc.m_nDepthBufferId);
+	glDeleteTextures(1, &rightEyeDesc.m_nRenderTextureId);
+	glDeleteFramebuffers(1, &rightEyeDesc.m_nRenderFramebufferId);
+	glDeleteTextures(1, &rightEyeDesc.m_nResolveTextureId);
+	glDeleteFramebuffers(1, &rightEyeDesc.m_nResolveFramebufferId);
 
 	if (HMD) {
 		vr::VR_Shutdown();

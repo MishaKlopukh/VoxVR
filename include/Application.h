@@ -4,7 +4,9 @@
 #include <windows.h>
 #endif
 
+#include <GL/glew.h>
 #include <GLFW/glfw3.h>
+#include <GL/freeglut.h>
 #include <GL/gl.h>
 #include <glm/glm.hpp>
 #include <cstdlib>
@@ -34,6 +36,7 @@ private:
 	void cleanup();
 
 	void initVR();
+	void setupENV();
 	void worldInit();
 
 	bool should_close;
@@ -44,8 +47,16 @@ private:
 
 	VoxelWorld* world;
 
-	glm::mat4x4 projectionmatrix_left;
-	glm::mat4x4 projectionmatrix_right;
+	glm::mat4 projectionmatrix_left;
+	glm::mat4 projectionmatrix_right;
+
+	glm::mat4 eyeposition_left;
+	glm::mat4 eyeposition_right;
+
+	glm::mat4 pose;
+
+	FramebufferDesc leftEyeDesc;
+	FramebufferDesc rightEyeDesc;
 
 	bool is_gripping_left;
 	bool is_gripping_right;

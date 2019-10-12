@@ -9,6 +9,10 @@
 			"path" : "out/build/x64-Debug/CMakeFiles/3.15.19080502-MSVC_2/CMakeSystem.cmake"
 		},
 		{
+			"isExternal" : true,
+			"path" : "C:/Users/Boris/vcpkg/scripts/buildsystems/vcpkg.cmake"
+		},
+		{
 			"isCMake" : true,
 			"isExternal" : true,
 			"path" : "C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.15/Modules/CMakeSystemSpecificInitialize.cmake"
@@ -124,6 +128,55 @@
 			"isCMake" : true,
 			"isExternal" : true,
 			"path" : "C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.15/Modules/FindOpenGL.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.15/Modules/FindPackageHandleStandardArgs.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.15/Modules/FindPackageMessage.cmake"
+		},
+		{
+			"isExternal" : true,
+			"path" : "C:/Users/Boris/vcpkg/installed/x64-windows/share/glew/vcpkg-cmake-wrapper.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.15/Modules/SelectLibraryConfigurations.cmake"
+		},
+		{
+			"isExternal" : true,
+			"path" : "C:/Users/Boris/vcpkg/installed/x64-windows/share/glew/glew-config.cmake"
+		},
+		{
+			"isExternal" : true,
+			"path" : "C:/Users/Boris/vcpkg/installed/x64-windows/share/glew/glew-targets.cmake"
+		},
+		{
+			"isExternal" : true,
+			"path" : "C:/Users/Boris/vcpkg/installed/x64-windows/share/glew/glew-targets-debug.cmake"
+		},
+		{
+			"isExternal" : true,
+			"path" : "C:/Users/Boris/vcpkg/installed/x64-windows/share/glew/glew-targets-release.cmake"
+		},
+		{
+			"isExternal" : true,
+			"path" : "C:/Users/Boris/vcpkg/installed/x64-windows/share/glew/CopyImportedTargetProperties.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.15/Modules/FindGLUT.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.15/Modules/SelectLibraryConfigurations.cmake"
 		},
 		{
 			"isCMake" : true,
