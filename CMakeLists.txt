@@ -26,6 +26,8 @@ add_library(vrutil STATIC ${PROJECT_SOURCE_DIR}/src/vrutil.cpp)
 
 add_library(GLSLShader STATIC ${PROJECT_SOURCE_DIR}/src/GLSLShader.cpp)
 
+add_library(Grid STATIC ${PROJECT_SOURCE_DIR}/src/Grid.cpp ${PROJECT_SOURCE_DIR}/src/RenderableObject.cpp)
+
 add_library(tinyfiledialogs STATIC ${PROJECT_SOURCE_DIR}/src/tinyfiledialogs.c)
 
 add_executable (VoxVR ${PROJECT_SOURCE_DIR}/src/main.cpp ${PROJECT_SOURCE_DIR}/src/Application.cpp)
@@ -41,8 +43,9 @@ target_include_directories(VoxVR PUBLIC ${OPENGL_INCLUDE_DIRS} ${OPENVR_INCLUDE_
 target_include_directories(vrutil PUBLIC ${OPENGL_INCLUDE_DIRS} ${OPENVR_INCLUDE_DIRS} ${GLEW_INCLUDE_DIRS} ${GLUT_INCLUDE_DIRS})
 target_include_directories(VoxelWorld PUBLIC ${OPENGL_INCLUDE_DIRS} ${OPENVR_INCLUDE_DIRS} ${GLEW_INCLUDE_DIRS} ${GLUT_INCLUDE_DIRS})
 target_include_directories(GLSLShader PUBLIC ${OPENGL_INCLUDE_DIRS} ${GLEW_INCLUDE_DIRS} ${GLUT_INCLUDE_DIRS})
+target_include_directories(Grid PUBLIC ${OPENGL_INCLUDE_DIRS} ${GLEW_INCLUDE_DIRS} ${GLUT_INCLUDE_DIRS})
 target_include_directories(BitMap PUBLIC ${OPENGL_INCLUDE_DIRS} ${GLEW_INCLUDE_DIRS} ${GLUT_INCLUDE_DIRS})
-target_link_libraries(VoxVR VoxelWorld BitMap GLSLShader vrutil tinyfiledialogs glfw ${OPENGL_LIBRARIES} ${OPENVR_LIBRARY} ${GLEW_LIBRARIES} ${GLUT_LIBRARIES})
+target_link_libraries(VoxVR VoxelWorld BitMap GLSLShader Grid vrutil tinyfiledialogs glfw ${OPENGL_LIBRARIES} ${OPENVR_LIBRARY} ${GLEW_LIBRARIES} ${GLUT_LIBRARIES})
 
 add_custom_command(TARGET VoxVR POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E copy_directory

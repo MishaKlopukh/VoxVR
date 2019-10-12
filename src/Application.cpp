@@ -152,7 +152,7 @@ void VoxVRApplication::worldInit() {
 	char const* maxtxt = tinyfd_inputBox("Input the number of images",
 		"Type the number f total images in the stack. this should be the number of the image you selected.", "");
 	int max_idx = atoi(maxtxt);
-	char* filetemplate = (char*)malloc(sizeof(filename)+1);
+	char* filetemplate = (char*)malloc(sizeof(filename) + 1);
 	int filetemplatelen = strlen(filename) - strlen(maxtxt) - 4;
 	strncpy(filetemplate, filename, filetemplatelen);
 	std::vector<const char*> filenames = std::vector<const char*>();
@@ -160,14 +160,17 @@ void VoxVRApplication::worldInit() {
 	for (int z = 1; z < max_idx; z++) {
 		if (z > 1000) {
 			zsize = 4;
-		} else if (z > 100) {
+		}
+		else if (z > 100) {
 			zsize = 3;
-		} else if (z > 10) {
+		}
+		else if (z > 10) {
 			zsize = 2;
-		} else {
+		}
+		else {
 			zsize = 1;
 		}
-		itoa(z, filetemplate+filetemplatelen, 10);
+		itoa(z, filetemplate + filetemplatelen, 10);
 		strcpy(filetemplate + filetemplatelen + zsize, ".bmp\0");
 		filenames.push_back(&*filetemplate);
 	}
@@ -176,13 +179,41 @@ void VoxVRApplication::worldInit() {
 }
 
 void VoxVRApplication::update() {
-	vr::VRCompositor()->WaitGetPoses(&HMPose, 1, NULL, 0);
-	switch (HMPose.eTrackingResult) {
-	case vr::TrackingResult_Running_OK:
-		pose = toGlmMat(HMPose.mDeviceToAbsoluteTracking);
-		break;
-	default:
-		break;
+	vr::VRCompositor()->WaitGetPoses(HMPose, vr::k_unMaxTrackedDeviceCount, NULL, 0);
+	for (int ii = 0; ii < vr::k_unMaxTrackedDeviceCount; ii++) {
+		switch (HMPose[ii].eTrackingResult) {
+		case vr::TrackingResult_Running_OK:
+			switch (HMD->GetTrackedDeviceClass(ii)) {
+			case vr::TrackedDeviceClass_HMD:
+				pose = glm::inverse(toGlmMat(HMPose[ii].mDeviceToAbsoluteTracking));
+				break;
+			case vr::TrackedDeviceClass_Controller:
+				switch (HMD->GetControllerRoleForTrackedDeviceIndex(ii)) {
+				case vr::TrackedControllerRole_LeftHand:
+					leftcontroller_lastpose = leftcontroller_pose;
+					leftcontroller_pose = glm::inverse(toGlmMat(HMPose[ii].mDeviceToAbsoluteTracking));
+					break;
+				case vr::TrackedControllerRole_RightHand:
+					rightcontroller_lastpose = rightcontroller_pose;
+					rightcontroller_pose = glm::inverse(toGlmMat(HMPose[ii].mDeviceToAbsoluteTracking));
+					break;
+				default:
+					break;
+				}
+			default:
+				break;
+			}
+			break;
+		default:
+			break;
+		}
+	}
+	if (is_gripping_right && is_gripping_left) {
+		// rot scale
+	} else if (is_gripping_right) {
+		world->transform(glm::translate(glm::mat4(1.0f), glm::vec3(glm::inverse(rightcontroller_pose) * glm::vec4(0, 0, 0, 1)) - glm::vec3(glm::inverse(rightcontroller_lastpose) * glm::vec4(0, 0, 0, 1))));
+	} else if (is_gripping_left) {
+		world->transform(glm::translate(glm::mat4(1.0f), glm::vec3(glm::inverse(leftcontroller_pose) * glm::vec4(0, 0, 0, 1)) - glm::vec3(glm::inverse(leftcontroller_lastpose) * glm::vec4(0, 0, 0, 1))));
 	}
 }
 
@@ -228,8 +259,6 @@ void VoxVRApplication::render() {
 
 	glFlush();
 	glFinish();
-
-	std::cout << "rendered frame" << std::endl;
 }
 
 void VoxVRApplication::cleanup() {

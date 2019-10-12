@@ -29,12 +29,6 @@ ninja_required_version = 1.5
 
 include rules.ninja
 
-
-#############################################
-# Utility command for list_install_components
-
-build list_install_components: phony
-
 # =============================================================================
 # Object build statements for EXECUTABLE target VoxVR
 
@@ -42,7 +36,7 @@ build list_install_components: phony
 #############################################
 # Order-only phony target for VoxVR
 
-build cmake_object_order_depends_target_VoxVR: phony || cmake_object_order_depends_target_BitMap cmake_object_order_depends_target_GLSLShader cmake_object_order_depends_target_VoxelWorld cmake_object_order_depends_target_glfw cmake_object_order_depends_target_tinyfiledialogs cmake_object_order_depends_target_vrutil
+build cmake_object_order_depends_target_VoxVR: phony || cmake_object_order_depends_target_BitMap cmake_object_order_depends_target_GLSLShader cmake_object_order_depends_target_Grid cmake_object_order_depends_target_VoxelWorld cmake_object_order_depends_target_glfw cmake_object_order_depends_target_tinyfiledialogs cmake_object_order_depends_target_vrutil
 
 build CMakeFiles\VoxVR.dir\src\main.cpp.obj: CXX_COMPILER__VoxVR ..\..\..\src\main.cpp || cmake_object_order_depends_target_VoxVR
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
@@ -68,10 +62,10 @@ build CMakeFiles\VoxVR.dir\src\Application.cpp.obj: CXX_COMPILER__VoxVR ..\..\..
 #############################################
 # Link the executable VoxVR.exe
 
-build VoxVR.exe: CXX_EXECUTABLE_LINKER__VoxVR CMakeFiles\VoxVR.dir\src\main.cpp.obj CMakeFiles\VoxVR.dir\src\Application.cpp.obj | VoxelWorld.lib BitMap.lib GLSLShader.lib vrutil.lib tinyfiledialogs.lib glfw-3.3\src\glfw3.lib ..\..\..\openvr-1.7.15\lib\win64\openvr_api.lib C$:\Users\Boris\vcpkg\installed\x64-windows\debug\lib\glew32d.lib C$:\Users\Boris\vcpkg\installed\x64-windows\debug\lib\freeglutd.lib || BitMap.lib GLSLShader.lib VoxelWorld.lib glfw-3.3\src\glfw3.lib tinyfiledialogs.lib vrutil.lib
+build VoxVR.exe: CXX_EXECUTABLE_LINKER__VoxVR CMakeFiles\VoxVR.dir\src\main.cpp.obj CMakeFiles\VoxVR.dir\src\Application.cpp.obj | VoxelWorld.lib BitMap.lib GLSLShader.lib Grid.lib vrutil.lib tinyfiledialogs.lib glfw-3.3\src\glfw3.lib ..\..\..\openvr-1.7.15\lib\win64\openvr_api.lib C$:\Users\Boris\vcpkg\installed\x64-windows\debug\lib\glew32d.lib C$:\Users\Boris\vcpkg\installed\x64-windows\debug\lib\freeglutd.lib || BitMap.lib GLSLShader.lib Grid.lib VoxelWorld.lib glfw-3.3\src\glfw3.lib tinyfiledialogs.lib vrutil.lib
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
   LINK_FLAGS = /machine:x64 /debug /INCREMENTAL /subsystem:console
-  LINK_LIBRARIES = VoxelWorld.lib BitMap.lib GLSLShader.lib vrutil.lib tinyfiledialogs.lib glfw-3.3\src\glfw3.lib opengl32.lib glu32.lib ..\..\..\openvr-1.7.15\lib\win64\openvr_api.lib C:\Users\Boris\vcpkg\installed\x64-windows\debug\lib\glew32d.lib C:\Users\Boris\vcpkg\installed\x64-windows\debug\lib\freeglutd.lib kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib
+  LINK_LIBRARIES = VoxelWorld.lib BitMap.lib GLSLShader.lib Grid.lib vrutil.lib tinyfiledialogs.lib glfw-3.3\src\glfw3.lib opengl32.lib glu32.lib ..\..\..\openvr-1.7.15\lib\win64\openvr_api.lib C:\Users\Boris\vcpkg\installed\x64-windows\debug\lib\glew32d.lib C:\Users\Boris\vcpkg\installed\x64-windows\debug\lib\freeglutd.lib kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib
   OBJECT_DIR = CMakeFiles\VoxVR.dir
   POST_BUILD = cmd.exe /C "cd /D C:\Users\Boris\source\repos\VoxVR\out\build\x64-Debug && powershell -noprofile -executionpolicy Bypass -file C:/Users/Boris/vcpkg/scripts/buildsystems/msbuild/applocal.ps1 -targetBinary C:/Users/Boris/source/repos/VoxVR/out/build/x64-Debug/VoxVR.exe -installedDir C:/Users/Boris/vcpkg/installed/x64-windows/debug/bin -OutVariable out && cd /D C:\Users\Boris\source\repos\VoxVR\out\build\x64-Debug && "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E copy_directory C:/Users/Boris/source/repos/VoxVR/openvr-1.7.15/bin/win64 C:/Users/Boris/source/repos/VoxVR/out/build/x64-Debug && cd /D C:\Users\Boris\source\repos\VoxVR\out\build\x64-Debug && "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E copy_directory C:/Users/Boris/source/repos/VoxVR/shaders C:/Users/Boris/source/repos/VoxVR/out/build/x64-Debug/shaders"
   PRE_LINK = cd .
@@ -267,6 +261,49 @@ build GLSLShader.lib: CXX_STATIC_LIBRARY_LINKER__GLSLShader CMakeFiles\GLSLShade
   TARGET_FILE = GLSLShader.lib
   TARGET_PDB = GLSLShader.pdb
 
+# =============================================================================
+# Object build statements for STATIC_LIBRARY target Grid
+
+
+#############################################
+# Order-only phony target for Grid
+
+build cmake_object_order_depends_target_Grid: phony || CMakeFiles\Grid.dir
+
+build CMakeFiles\Grid.dir\src\Grid.cpp.obj: CXX_COMPILER__Grid ..\..\..\src\Grid.cpp || cmake_object_order_depends_target_Grid
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
+  INCLUDES = -I..\..\..\include -I..\..\..\glfw-3.3\include -IC:\Users\Boris\vcpkg\installed\x64-windows\include
+  OBJECT_DIR = CMakeFiles\Grid.dir
+  OBJECT_FILE_DIR = CMakeFiles\Grid.dir\src
+  TARGET_COMPILE_PDB = CMakeFiles\Grid.dir\Grid.pdb
+  TARGET_PDB = Grid.pdb
+
+build CMakeFiles\Grid.dir\src\RenderableObject.cpp.obj: CXX_COMPILER__Grid ..\..\..\src\RenderableObject.cpp || cmake_object_order_depends_target_Grid
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
+  INCLUDES = -I..\..\..\include -I..\..\..\glfw-3.3\include -IC:\Users\Boris\vcpkg\installed\x64-windows\include
+  OBJECT_DIR = CMakeFiles\Grid.dir
+  OBJECT_FILE_DIR = CMakeFiles\Grid.dir\src
+  TARGET_COMPILE_PDB = CMakeFiles\Grid.dir\Grid.pdb
+  TARGET_PDB = Grid.pdb
+
+
+# =============================================================================
+# Link build statements for STATIC_LIBRARY target Grid
+
+
+#############################################
+# Link the static library Grid.lib
+
+build Grid.lib: CXX_STATIC_LIBRARY_LINKER__Grid CMakeFiles\Grid.dir\src\Grid.cpp.obj CMakeFiles\Grid.dir\src\RenderableObject.cpp.obj
+  LANGUAGE_COMPILE_FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
+  LINK_FLAGS = /machine:x64
+  OBJECT_DIR = CMakeFiles\Grid.dir
+  POST_BUILD = cd .
+  PRE_LINK = cd .
+  TARGET_COMPILE_PDB = CMakeFiles\Grid.dir\Grid.pdb
+  TARGET_FILE = Grid.lib
+  TARGET_PDB = Grid.pdb
+
 
 #############################################
 # Utility command for edit_cache
@@ -277,6 +314,12 @@ build CMakeFiles\edit_cache.util: CUSTOM_COMMAND
   restat = 1
 
 build edit_cache: phony CMakeFiles\edit_cache.util
+
+
+#############################################
+# Utility command for list_install_components
+
+build list_install_components: phony
 
 
 #############################################
@@ -600,6 +643,8 @@ build BitMap: phony BitMap.lib
 
 build GLSLShader: phony GLSLShader.lib
 
+build Grid: phony Grid.lib
+
 build VoxVR: phony VoxVR.exe
 
 build VoxelWorld: phony VoxelWorld.lib
@@ -638,7 +683,7 @@ build glfw-3.3\src\all: phony glfw
 #############################################
 # The main all target.
 
-build all: phony VoxVR.exe tinyfiledialogs.lib BitMap.lib vrutil.lib VoxelWorld.lib GLSLShader.lib glfw-3.3\src\glfw3.lib
+build all: phony VoxVR.exe tinyfiledialogs.lib BitMap.lib vrutil.lib VoxelWorld.lib GLSLShader.lib Grid.lib glfw-3.3\src\glfw3.lib
 
 
 #############################################

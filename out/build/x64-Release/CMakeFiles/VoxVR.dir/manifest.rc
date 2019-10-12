@@ -1,0 +1,2 @@
+#pragma code_page(65001)
+1 /* CREATEPROCESS_MANIFEST_RESOURCE_ID */ 24 /* RT_MANIFEST */ "C:/Users/Boris/source/repos/VoxVR/out/build/x64-Release/CMakeFiles/VoxVR.dir/embed.manifest"

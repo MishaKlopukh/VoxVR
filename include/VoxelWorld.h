@@ -10,10 +10,11 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/type_ptr.hpp>
 #include <glm/gtc/matrix_transform.hpp>
-#include <GLSLShader.h>
 #include <cstdlib>
 #include <iostream>
 #include "BitMap.h"
+#include "GLSLShader.h"
+#include "Grid.h"
 
 const glm::vec4 bg = glm::vec4(0.5, 0.5, 1, 1);
 
@@ -32,6 +33,7 @@ private:
 	GLuint cubeIndicesID;
 	GLuint textureID;
 	GLSLShader shader;
+	CGrid* grid;
 	int maxx;
 	int maxy;
 	int maxz;

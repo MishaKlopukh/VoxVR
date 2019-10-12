@@ -75,5 +75,5 @@ void main()
 		//we terminated the loop
 		if( vFragColor.a>0.99)
 			break;
-	} 
+	}
 }

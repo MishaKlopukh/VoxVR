@@ -27,6 +27,8 @@ VoxelWorld::VoxelWorld(std::vector<const char*> files) {
 
 	modelTransform = glm::mat4(1.0f);
 
+	grid = new CGrid(20, 20);
+
 	glGenTextures(1, &textureID);
 	glBindTexture(GL_TEXTURE_3D, textureID);
 
@@ -117,6 +119,7 @@ void VoxelWorld::render(glm::mat4 modelView, glm::mat4 projection) {
 	glm::vec3 camPos = glm::vec3(glm::inverse(modelView * modelTransform) * glm::vec4(0, 0, 0, 1));
 	glm::mat4 MVP = projection * modelView * modelTransform;
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	grid->Render(glm::value_ptr(MVP));
 	glEnable(GL_BLEND);
 	glBindVertexArray(cubeVAOID);
 	shader.Use();
@@ -128,5 +131,10 @@ void VoxelWorld::render(glm::mat4 modelView, glm::mat4 projection) {
 }
 
 VoxelWorld::~VoxelWorld() {
+	shader.DeleteShaderProgram();
+	glDeleteVertexArrays(1, &cubeVAOID);
+	glDeleteBuffers(1, &cubeVBOID);
+	glDeleteBuffers(1, &cubeIndicesID);
 	glDeleteTextures(1, &textureID);
+	delete grid;
 }

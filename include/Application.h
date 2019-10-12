@@ -43,7 +43,7 @@ private:
 	GLFWwindow* window;
 	vr::IVRSystem* HMD;
 
-	vr::TrackedDevicePose_t HMPose;
+	vr::TrackedDevicePose_t HMPose[vr::k_unMaxTrackedDeviceCount];
 
 	VoxelWorld* world;
 
@@ -54,6 +54,11 @@ private:
 	glm::mat4 eyeposition_right;
 
 	glm::mat4 pose;
+
+	glm::mat4 leftcontroller_lastpose;
+	glm::mat4 rightcontroller_lastpose;
+	glm::mat4 leftcontroller_pose;
+	glm::mat4 rightcontroller_pose;
 
 	FramebufferDesc leftEyeDesc;
 	FramebufferDesc rightEyeDesc;
