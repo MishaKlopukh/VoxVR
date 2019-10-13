@@ -152,10 +152,10 @@ void VoxVRApplication::worldInit() {
 	char const* maxtxt = tinyfd_inputBox("Input the number of images",
 		"Type the number f total images in the stack. this should be the number of the image you selected.", "");
 	int max_idx = atoi(maxtxt);
-	char* filetemplate = (char*)malloc(sizeof(filename) + 1);
 	int filetemplatelen = strlen(filename) - strlen(maxtxt) - 4;
+	char* filetemplate = (char*)malloc(sizeof(filename) + 1);
 	strncpy(filetemplate, filename, filetemplatelen);
-	std::vector<const char*> filenames = std::vector<const char*>();
+	std::vector<std::string> filenames = std::vector<std::string>();
 	int zsize;
 	for (int z = 1; z < max_idx; z++) {
 		if (z > 1000) {
@@ -172,9 +172,10 @@ void VoxVRApplication::worldInit() {
 		}
 		itoa(z, filetemplate + filetemplatelen, 10);
 		strcpy(filetemplate + filetemplatelen + zsize, ".bmp\0");
-		filenames.push_back(&*filetemplate);
+		filenames.push_back(std::string(filetemplate));
 	}
 	filenames.push_back(&*filename);
+	std::cout << filenames[0] << filenames[1] << filenames[500] << std::endl;
 	world = new VoxelWorld(filenames);
 }
 

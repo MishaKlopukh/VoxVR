@@ -20,7 +20,7 @@ const glm::vec4 bg = glm::vec4(0.5, 0.5, 1, 1);
 
 class VoxelWorld {
 public:
-	VoxelWorld(std::vector<const char*> files);
+	VoxelWorld(std::vector<std::string> files);
 	void transform(glm::mat4x4 transformation);
 	void setResolution(int xres, int yres);
 	void render(glm::mat4 modelView, glm::mat4 projection);

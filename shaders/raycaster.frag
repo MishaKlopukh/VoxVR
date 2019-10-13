@@ -6,21 +6,79 @@ smooth in vec3 vUV;				//3D texture coordinates form vertex shader
 								//interpolated by rasterizer
 
 //uniforms
-uniform sampler3D	volume;		//volume dataset
-uniform vec3		camPos;		//camera position
-uniform vec3		step_size;	//ray step size 
+uniform sampler3D	volume;			//volume dataset
+uniform vec3		camPos;			//camera position
+uniform vec3		step_size;		//ray step size 
 
 //constants
-const int MAX_SAMPLES = 300;	//total samples for each ray march step
-const vec3 texMin = vec3(0);	//minimum texture access coordinate
-const vec3 texMax = vec3(1);	//maximum texture access coordinate
+const int MAX_SAMPLES = 300;		//total samples for each ray march step
+const vec3 texMin = vec3(0);		//minimum texture access coordinate
+const vec3 texMax = vec3(1);		//maximum texture access coordinate
+const float DELTA = 0.01;			//the step size for gradient calculation
+const float isoValue = 40/255.0;	//the isovalue for iso-surface detection
+
+//function to give a more accurate position of where the given iso-value (iso) is found
+//given the initial minimum limit (left) and maximum limit (right)
+vec3 Bisection(vec3 left, vec3 right , float iso)
+{ 
+	//loop 4 times
+	for(int i=0;i<4;i++)
+	{ 
+		//get the mid value between the left and right limit
+		vec3 midpoint = (right + left) * 0.5;
+		//sample the texture at the middle point
+		float cM = texture(volume, midpoint).x ;
+		//check if the value at the middle point is less than the given iso-value
+		if(cM < iso)
+			//if so change the left limit to the new middle point
+			left = midpoint;
+		else
+			//otherwise change the right limit to the new middle point
+			right = midpoint; 
+	}
+	//finally return the middle point between the left and right limit
+	return vec3(right + left) * 0.5;
+}
+
+//function to calculate the gradient at the given location in the volume dataset
+//The function user center finite difference approximation to estimate the 
+//gradient
+vec3 GetGradient(vec3 uvw) 
+{
+	vec3 s1, s2;  
+
+	//Using center finite difference 
+	s1.x = texture(volume, uvw-vec3(DELTA,0.0,0.0)).x ;
+	s2.x = texture(volume, uvw+vec3(DELTA,0.0,0.0)).x ;
+
+	s1.y = texture(volume, uvw-vec3(0.0,DELTA,0.0)).x ;
+	s2.y = texture(volume, uvw+vec3(0.0,DELTA,0.0)).x ;
+
+	s1.z = texture(volume, uvw-vec3(0.0,0.0,DELTA)).x ;
+	s2.z = texture(volume, uvw+vec3(0.0,0.0,DELTA)).x ;
+	 
+	return normalize((s1-s2)/2.0); 
+}
+
+//function to estimate the PhongLighting component given the light vector (L),
+//the normal (N), the view vector (V), the specular power (specPower) and the
+//given diffuse colour (diffuseColor). The diffuse component is first calculated
+//Then, the half way vector is computed to obtain the specular component. Finally
+//the diffuse and specular contributions are added together
+vec4 PhongLighting(vec3 L, vec3 N, vec3 V, float specPower, vec3 diffuseColor)
+{
+	float diffuse = max(dot(L,N),0.0);
+	vec3 halfVec = normalize(L+V);
+	float specular = pow(max(0.00001,dot(halfVec,N)),specPower);	
+	return vec4((diffuse*diffuseColor + specular),1.0);
+}
 
 void main()
 { 
 	//get the 3D texture coordinates for lookup into the volume dataset
 	vec3 dataPos = vUV;
-
-	//Getting the ray marching direction:
+		
+	//Gettting the ray marching direction:
 	//get the object space position by subracting 0.5 from the
 	//3D texture coordinates. Then subtraact it from camera position
 	//and normalize to get the ray marching direction
@@ -29,15 +87,14 @@ void main()
 	//multiply the raymarching direction with the step size to get the
 	//sub-step size we need to take at each raymarching step
 	vec3 dirStep = geomDir * step_size; 
-	 
+	
 	//flag to indicate if the raymarch loop should terminate
 	bool stop = false; 
-
+	
 	//for all samples along the ray
 	for (int i = 0; i < MAX_SAMPLES; i++) {
 		// advance ray by dirstep
 		dataPos = dataPos + dirStep;
-		
 		
 		//The two constants texMin and texMax have a value of vec3(-1,-1,-1)
 		//and vec3(1,1,1) respectively. To determine if the data value is 
@@ -52,28 +109,45 @@ void main()
 		//the volume dataset
 		stop = dot(sign(dataPos-texMin),sign(texMax-dataPos)) < 3.0;
 
-		//if the stopping condition is true we brek out of the ray marching loop
+		//if the stopping condition is true we brek out of the ray marching loop		
 		if (stop) 
 			break;
 		
 		// data fetching from the red channel of volume texture
-		float sample = texture(volume, dataPos).r;	
-		
-		//Opacity calculation using compositing:
-		//here we use front to back compositing scheme whereby the current sample
-		//value is multiplied to the currently accumulated alpha and then this product
-		//is subtracted from the sample value to get the alpha from the previous steps.
-		//Next, this alpha is multiplied with the current sample colour and accumulated
-		//to the composited colour. The alpha value from the previous steps is then 
-		//accumulated to the composited colour alpha.
-		float prev_alpha = sample - (sample * vFragColor.a);
-		vFragColor.rgb = prev_alpha * vec3(sample) + vFragColor.rgb; 
-		vFragColor.a += prev_alpha; 
-			
-		//early ray termination
-		//if the currently composited colour alpha is already fully saturated
-		//we terminated the loop
-		if( vFragColor.a>0.99)
+		float sample = texture(volume, dataPos).r;			//current sample
+		float sample2 = texture(volume, dataPos+dirStep).r;	//next sample
+
+		//In case of iso-surface rendering, we do not use compositing. 
+		//Instead, we find the zero crossing of the volume dataset iso function 
+		//by sampling two consecutive samples. 
+		if( (sample -isoValue) < 0  && (sample2-isoValue) >= 0.0)  {
+			//If there is a zero crossing, we refine the detected iso-surface 
+			//location by using bisection based refinement.
+			vec3 xN = dataPos;
+			vec3 xF = dataPos+dirStep;	
+			vec3 tc = Bisection(xN, xF, isoValue);	
+	
+			//This returns the first hit surface
+			//vFragColor = make_float4(xN,1);
+          	
+			//To get the shaded iso-surface, we first estimate the normal
+			//at the refined position
+			vec3 N = GetGradient(tc);					
+
+			//The view vector is simply opposite to the ray marching 
+			//direction
+			vec3 V = -geomDir;
+
+			//We keep the view vector as the light vector to give us a head 
+			//light
+			vec3 L =  V;
+
+			//Finally, we call PhongLighing function to get the final colour
+			//with diffuse and specular components. Try changing this call to this
+			//vFragColor =  PhongLighting(L,N,V,250,  tc); to get a multi colour
+			//iso-surface
+			vFragColor =  PhongLighting(L,N,V,250, vec3(0.5));	
 			break;
-	}
+		} 
+	} 
 }

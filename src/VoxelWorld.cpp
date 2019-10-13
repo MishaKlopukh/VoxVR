@@ -1,7 +1,7 @@
 #include "VoxelWorld.h"
 
-VoxelWorld::VoxelWorld(std::vector<const char*> files) {
-	BitMap bmp = BitMap(files[0]);
+VoxelWorld::VoxelWorld(std::vector<std::string> files) {
+	BitMap bmp = BitMap(files[0].c_str());
 	int x = bmp.bmp_info_header.width;
 	int y = bmp.bmp_info_header.height;
 	int z = files.size();
@@ -12,7 +12,7 @@ VoxelWorld::VoxelWorld(std::vector<const char*> files) {
 		}
 	}
 	for (int ii = 1; ii < z; ii++) {
-		BitMap bmp = BitMap(files[ii]);
+		BitMap bmp = BitMap(files[ii].c_str());
 		for (int xx = 0; xx < x; xx++) {
 			for (int yy = 0; yy < y; yy++) {
 				pData[(ii * y + yy) * x + xx] = bmp.getPixel(xx, yy).r;
