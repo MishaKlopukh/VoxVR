@@ -59,8 +59,8 @@ void VoxVRApplication::initVR() {
 void VoxVRApplication::setupENV() {
 	projectionmatrix_left = toGlmMat(HMD->GetProjectionMatrix(vr::Eye_Left, 0.1, 100));
 	projectionmatrix_right = toGlmMat(HMD->GetProjectionMatrix(vr::Eye_Right, 0.1, 100));
-	eyeposition_left = toGlmMat(HMD->GetEyeToHeadTransform(vr::Eye_Left));
-	eyeposition_right = toGlmMat(HMD->GetEyeToHeadTransform(vr::Eye_Right));
+	eyeposition_left = glm::inverse(toGlmMat(HMD->GetEyeToHeadTransform(vr::Eye_Left)));
+	eyeposition_right = glm::inverse(toGlmMat(HMD->GetEyeToHeadTransform(vr::Eye_Right)));
 
 	CreateFrameBuffer(WIDTH, HEIGHT, leftEyeDesc);
 	CreateFrameBuffer(WIDTH, HEIGHT, rightEyeDesc);

@@ -49,7 +49,7 @@ target_link_libraries(VoxVR VoxelWorld BitMap GLSLShader Grid vrutil tinyfiledia
 
 add_custom_command(TARGET VoxVR POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E copy_directory
-        "${OPENVR_ROOT_DIR}/bin/${OPENVR_PLATFORM}"
+        "${OPENVR_ROOT_DIR}/binaries/${OPENVR_PLATFORM}"
         ${CMAKE_BINARY_DIR})
 
 add_custom_command(TARGET VoxVR POST_BUILD
